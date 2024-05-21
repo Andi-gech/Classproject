@@ -13,7 +13,7 @@ export default function Loading() {
   wrapperClass=""
   visible={true}
   />
-  <p className='text-xl mt-3'>Loading</p>
+  <p className='text-md mt-3'>Loading</p>
   
     </div>
   )

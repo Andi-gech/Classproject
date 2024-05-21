@@ -2,6 +2,7 @@
  
  export default function ProgressBar({percentage}) {
     const [count,setcount]=useState(0)
+    console.log(percentage)
     
     useEffect(() => {
         count < percentage && setTimeout(() => setcount(count + 1), 10);

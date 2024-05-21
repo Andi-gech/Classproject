@@ -4,47 +4,43 @@ import image from '../assets/curvestyle.png'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 export default function Login({props}) {
   const [Email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 const [error, setError] = React.useState(null)
   const signIn = useSignIn()
   const navigate = useNavigate()
+  const auth = useAuthUser()
   
-  const handleLogin = async() => {
-    try{
-    const result=await axios.post('http://localhost:8080/api/user/auth', {email:Email,password})
-    if(result.status===200){
-      console.log(result.data)
-      if(signIn({
-        auth: {
+  const handleLogin = async () => {
+    try {
+      const result = await axios.post('http://localhost:8080/api/user/Auth', { email:Email, password });
+      if (result.status === 200) {
+        signIn({
+          auth: {
             token: result.data.token,
             type: 'Bearer'
-        },
-        userState: {
-          email:Email,
-          name:result.data.name
-        }
-    })){ 
-    
-    return navigate('/')
-     console.log('login success')
-    }else {
-       console.log('error')
+          },
+          userState: {
+            email:Email,
+            name: 'React User',
+            uid: 123456
+          }
+        });
+        navigate('/');
+      } else {
+        setError('Failed to sign in.');
+      }
+    } catch (err) {
+      console.log(err);
+      setError(err?.response?.data);
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
     }
-      
-    
-  
-    }
-  }catch(err){
-    console.log(err)
-    setError(err?.response?.data)
-    setTimeout(() => {
-      setError(null)
-    }, 3000);
-  }
-    
-  }
+  };
+
   return (
     <div className='w-full h-screen  flex items-center justify-center'>
       <img src={image} className='w-full h-full fixed -z-10  bottom-0  right-0 '/>

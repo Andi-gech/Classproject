@@ -10,6 +10,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import RequireAuth from '@auth-kit/react-router/RequireAuth'
 import Header from './Pages/Header';
+import EnrollPage from './Pages/EnrollPage';
 
 
 
@@ -20,7 +21,7 @@ function App() {
  
    
   return (
-    <div className=' w-full dark:bg-zinc-950 min-h-screen flex-1 overflow-y-auto  flex'>
+    <div className=' w-full font-j  dark:bg-zinc-900 min-h-screen flex-1 overflow-y-auto  flex'>
    { !isloginorsignupPath&&  
  <Header/>
        }    <Routes>
@@ -30,10 +31,10 @@ function App() {
       <Route path="/Notification" element={<RequireAuth fallbackPath='/login'><Notification /></RequireAuth>} />
       <Route path="/Lesson" element={<RequireAuth fallbackPath='/login'><Lesson /></RequireAuth>} />
     
-      <Route path="/courseName/courseModule/:id" element={<RequireAuth fallbackPath='/login'><Lesson/></RequireAuth>} />
-      <Route path="/quiz/:id" element={<RequireAuth fallbackPath='/login'><Exam/></RequireAuth>} />
+      <Route path="/courseName/courseModule/:id/:mid" element={<RequireAuth fallbackPath='/login'><Lesson/></RequireAuth>} />
+      <Route path="/courseName/courseModule/:id/:mid/quiz/:examid" element={<RequireAuth fallbackPath='/login'><Exam/></RequireAuth>} />
       <Route path="/EnrolledCourse" element={<RequireAuth fallbackPath='/login'><EnrolledCouse/></RequireAuth>} />
-
+<Route path="/enroll/:courseid" element={<RequireAuth fallbackPath='/login'><EnrollPage/></RequireAuth>} />
    <Route path="/login" element={<Login/>} />
    <Route path='/signup' element={<Signup/>} />
 

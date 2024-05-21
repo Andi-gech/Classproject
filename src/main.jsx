@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import createStore from 'react-auth-kit/createStore';
-import AuthProvider from 'react-auth-kit/AuthProvider'
+import AuthProvider from 'react-auth-kit';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 

@@ -20,7 +20,7 @@ export default function VerticalProgressBar({percent,keys}) {
          
         }} className={`w-[10px] ${ count<50?"bg-red-500":(count>50 && count<70)?"bg-yellow-400":(count>70 && count<90)?"bg-green-400":"bg-blue-400"}  rounded-full`}></div>
       </div>
-      <p className=''>{Day[keys]} {count}%</p>
+      <p className=' text-sm'>{Day[keys]} {count}%</p>
     </div>
   )
 }
