@@ -18,23 +18,25 @@ export default function Exam() {
     const [ispassed,setispassed]=useState(false)
     const [time,settime]=useState(0)
     const [remainingTime,setremainingTime]=useState(0.2* 60 * 1000)
-    const {examid,id,mid}=useParams()
+    const {examid}=useParams()
     const {data}=UseFetchQuiz(examid)
+    
     
 
      console.log(data?.data?.questions)
      useEffect(() => {
-       settime(data?.data?.examDuration* 60 * 1000)
+       settime(2000* 60 * 1000)
      },data)
 
  const authHeader = useAuthHeader()
     const Result =async () =>{
-      const res=await axios.post(`http://localhost:8080/api/exams/${id}/${mid}/${examid}/evaluate`,{answers:examAnswers},{headers:{'_auth':`${authHeader}`}})
+      console.log(examAnswers,'answers')
+      const res=await axios.post(`http://localhost:8080/api/enroll/exam/${examid}/evaluate`,{answers:examAnswers},{headers:{'_auth':`${authHeader}`}})
    if(res.status==200){
     console.log(res)
     console.log(res,"res")
-    setmark(res?.data?.totalMarks)}
-    setispassed(res?.data?.isPassed)
+    setmark(res?.data?.result?.marks)}
+    setispassed(res?.data?.result?.ispassed)
   
     }
 
@@ -61,7 +63,7 @@ export default function Exam() {
         } else {
             examAnswers.push(data)
         }
-        console.log(examAnswers)
+    
 
     }
    
@@ -99,7 +101,7 @@ export default function Exam() {
         }} className='h-[50px] w-[300px] flex items-center justify-center shrink-0 bg-purple-700 rounded-md'>
           <p className='text-white '>Complete</p></div>
         {
-          completed && <ExamResult link={`/courseName/courseModule/${id}/${mid}`} onretake={()=>{
+          completed && <ExamResult link={examid} onretake={()=>{
             setcompleted(false)
             setexamAnswer([])
             setmark(0)

@@ -3,14 +3,14 @@ import axios from 'axios'
 import React from 'react'
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
 
-export default function UseFetchAllCourse() {
+export default function UseFetchSingleCourse(id) {
     const authHeader = useAuthHeader()
-
+    
     const Fetchcourse=()=>{
 
-        return axios.get('http://localhost:8080/api/enrolledcourse',{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/courses/${id}`,{headers:{'_auth':`${authHeader}`}})
     }
   
-    return useQuery({ queryKey: ['coursess'], queryFn: Fetchcourse })
+    return useQuery({ queryKey: ['Course',id], queryFn: Fetchcourse,enabled: !!id  })
  
 }

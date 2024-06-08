@@ -7,6 +7,7 @@ export default function ErrorPage({error}) {
     <div className='ml-[20%] w-[80%] flex flex-col items-center justify-center  h-screen '>
         <MdErrorOutline size={90}/>
         <p>{error}</p>
+        
     </div>
   )
 }

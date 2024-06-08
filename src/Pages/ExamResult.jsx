@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function ExamResult({mark,isPassed,onretake,link}) {
+  const navigate = useNavigate()
 
 
 
@@ -19,7 +20,7 @@ export default function ExamResult({mark,isPassed,onretake,link}) {
 
 </div>
 {
-isPassed ? <Link to={link} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
+isPassed ? <Link to={-1} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
 <p className=' font-bold'>Go to Next Lesson</p>
 </Link>:<Link  onClick={onretake} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
 <p className=' font-bold'>Retake</p>

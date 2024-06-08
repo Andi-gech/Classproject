@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import image from '../assets/curvestyle.png'
+import axios from 'axios';
 
 export default function Signup() {
   const [Fullname, setFullName] = React.useState('')
@@ -9,6 +10,24 @@ export default function Signup() {
   const [confirmpassword, setConfirmPassword] = React.useState('')
   const [error, setError] = React.useState(null)
 const navigate = useNavigate()
+
+  const handleSignup = async () => {
+    try {
+      const result = await axios.post('http://localhost:8080/api/user/create', { fullName:Fullname, email:Email, password ,role:'student' });
+      if (result.status === 200) {
+        console.log(result.data)
+        navigate('/Login')
+      } else {
+        setError('Failed to sign up.');
+      }
+    } catch (err) {
+      console.log(err);
+      setError(err?.response?.data);
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  };
 
 
   return (
@@ -34,7 +53,7 @@ const navigate = useNavigate()
           <input onChange={(e) => setConfirmPassword(e.target.value)} type="text" className='w-full  bg-gray-100 outline-purple-200 -z-10 h-[45px] rounded-md border-2'/>
         </div> 
         <p className='w-[350px] text-sm mt-4 text-red-400'> Wrong Username or Password</p>
-        <div className='w-[100px] h-[50px] shrink-0 hover:bg-purple-800 cursor-pointer bg-purple-500 rounded-md mt-[30px] flex items-center justify-center'>
+        <div onClick={handleSignup} className='w-[100px] h-[50px] shrink-0 hover:bg-purple-800 cursor-pointer bg-purple-500 rounded-md mt-[30px] flex items-center justify-center'>
           <p className=' text-white font-bold'>SignUp</p>
         </div>
         <div className='w-full flex flex-row px-4 mt-3 '>

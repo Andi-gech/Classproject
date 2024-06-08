@@ -2,14 +2,17 @@
  
  export default function ProgressBar({percentage}) {
     const [count,setcount]=useState(0)
-    console.log(percentage)
+  
+    
     
     useEffect(() => {
         count < percentage && setTimeout(() => setcount(count + 1), 10);
-      }, [count]);
+      }, [count,percentage]);
+    
    return (
-     <div className=' w-full mt-[10px] h-[5px] bg-gray-200 rounded-full'>
-       <div style={{width:`${count}%` }} className={`   h-full bg-blue-800 rounded-full`}></div>
+     <div className=' w-[90%]   h-[5px] bg-white rounded-full'>
+    
+       <div style={{width:`${count}%`,backgroundColor:"blue" }} className={`   h-full rounded-full`}></div>
      </div>
    )
  }

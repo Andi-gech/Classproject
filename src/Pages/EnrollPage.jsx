@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import UseFetchCourse from '../Hooks/UseFetchCourse'
-import UseFetchEachCourse from '../Hooks/useFechEachCourse'
+import UseFetchCourse from '../Hooks/UseFetchAllCourses'
+import UseFetchEachCourse from '../Hooks/UseFetchAllModules'
 import axios from 'axios'
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
+import UseFetchEnrollCourse from '../Hooks/UseFechSingleEnrollCourse'
 
 export default function EnrollPage() {
   const {courseid}=useParams()
   const {data}=UseFetchEachCourse(courseid)
+  const {data:enroll}=UseFetchEnrollCourse(courseid)
   const [error,setError]=useState()
   const [sucess,setSucess]=useState()
   const authHeader = useAuthHeader()
   const navigate = useNavigate()
 const handleEnroll=async()=>{
   try{ 
-    const result = await axios.post(`http://localhost:8080/api/enrolledcourse`,{
+    const result = await axios.post(`http://localhost:8080/api/enroll/enroll`,{
       course:courseid
     }, {headers:{'_auth':`${authHeader}`}})
     if (result.status === 200) {
@@ -34,7 +36,7 @@ const handleEnroll=async()=>{
 }
   return (
     <div className='ml-[20%] w-[80%] flex flex-row  items-center  overflow-hidden p-[100px]'>
-      <img src='https://picsum.photos/300/130' className='w-[450px] h-[350px]  rounded-md'/>
+      <img src={`http://localhost:8080/images/${data?.data?.image}`} className='w-[450px] h-[350px]  rounded-md'/>
       <div  className=' h-[200px] ml-5'>
       {error && <p className='text-red-500'>{error}</p>}
         <p className='font-bold w-full text-[25px]'>{data?.data?.name} {"{ course Category}"}</p>
@@ -49,8 +51,11 @@ const handleEnroll=async()=>{
     
       
       </div>
+      { enroll?.data?.length===0 ?
       <div onClick={handleEnroll} className='w-[150px]  cursor-pointer ml-4 rounded-lg h-[50px] flex items-center justify-center bg-purple-400'> 
-      <p>Enroll</p></div>
+      <p>Enroll</p></div>:
+      <div  className='w-[150px]  cursor-pointer ml-4 rounded-lg h-[50px] flex items-center justify-center bg-purple-200'> 
+      <p>Enrolled</p></div>}
     </div>
   )
 }
