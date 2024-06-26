@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import useSignIn from 'react-auth-kit/hooks/useSignIn';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import ErrorPopup from '../Components/ErrorPopup';
 export default function Login({props}) {
   const [Email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -34,7 +35,7 @@ const [error, setError] = React.useState(null)
       }
     } catch (err) {
       console.log(err);
-      setError(err?.response?.data);
+      setError(err.response.data);
       setTimeout(() => {
         setError(null);
       }, 3000);
@@ -42,32 +43,32 @@ const [error, setError] = React.useState(null)
   };
 
   return (
-    <div className=' relative w-full h-screen  flex items-center justify-center'>
-      <img src={image} className='w-full  dark:opacity-5 h-full fixed z-10  bottom-0  right-0 '/>
-     
-      <div className='w-[400px] z-20 rounded-md bg-gradient-to-r from-blue-950 to-transparent dark:border-blue-500 h-[400px]  border-2 flex flex-col'>
-        <div className='w-full h-[50px] flex items-center justify-center font-bold'><p className=' font-bold text-2xl dark:text-white font-serif'>Login</p></div>
-      <div className='w-full   pt-3  h-[350px] flex-col flex items-center justify-start'>
-      <div className='w-[90%] relative h-[70px] mt-4 '>
-          <p className='  text-sm z-10 dark:text-white  px-2 py-2'>Email</p>
-          <input onChange={(e) => setEmail(e.target.value)} type="email" className='w-full  bg-gray-100 outline-purple-200 -z-10 h-[45px] rounded-md border-2'/>
+  <div className='bg-white flex-col  w-screen h-screen flex items-center justify-center'>
+    <div className=' overflow-hidden  bg-white items-center flex-col shadow-sm w-[400px] flex rounded-[3%] h-[500px]  shadow-gray-500'>
+<div className=' relative w-full h-[50px] flex items-center justify-center'>
+  <p className='font-bold text-center text-[25px]'>Login</p>
+  
+<ErrorPopup error={error}/>
+</div>
+
+<div className='w-[90%] relative h-[70px] mt-[50px] '>
+          <p className='  text-sm z-10 bg-white  dark:bg-zinc-900 px-2 py-2 dark:text-white'>Email</p>
+          <input onChange={(e) => setEmail(e.target.value)} type="email" className='w-full  bg-white dark:bg-zinc-800 outline-purple-500 -z-10 h-[45px] border-gray-400 rounded-md border-none shadow-sm shadow-gray-400'/>
         </div> 
-        
         <div className='w-[90%] relative h-[70px] mt-4 '>
-          <p className='  text-sm z-10 dark:text-white px-2 py-2'>Password</p>
-          <input  onChange={(e) => setPassword(e.target.value)} type="password" className='w-full  bg-gray-100 outline-purple-200 -z-10 h-[45px] rounded-md border-2'/>
-        </div>  
-       {error&& <p className='w-[90%] text-sm mt-4 text-red-400'>{error}</p>}
-        <div onClick={handleLogin} className='w-[100px] h-[50px] shrink-0 hover:bg-purple-800 cursor-pointer bg-purple-500 rounded-md mt-[30px] flex items-center justify-center'>
-          <p className=' text-white font-bold'>Login</p>
+          <p className='  text-sm z-10 bg-white  dark:bg-zinc-900 px-2 py-2 dark:text-white'>Password</p>
+          <input onChange={(e) => setPassword(e.target.value)} type='password' className='w-full  bg-white dark:bg-zinc-800 outline-purple-500 -z-10 h-[45px] border-gray-400 rounded-md border-none shadow-sm shadow-gray-400'/>
+        </div> 
+        <div onClick={handleLogin} className='w-[80%] mt-[50px] cursor-pointer hover:bg-zinc-700 rounded-md h-[50px] flex items-center justify-center bg-black'>
+          <p className='text-white font-bold'>Login</p>
         </div>
-        <div className='w-full flex flex-row px-4 mt-3 '>
-          <p className='dark:text-white text-sm mt-4'>Don't have an account?</p>
-          <Link to={'/signup'} className=' text-sm mt-4 text-blue-500 ml-2'>Register</Link >
+        <div className='w-full  px-3 h-[50px] justify-center mt-7 flex flex-col  '>
+        <p className='mt-[5px]  text-[14px] font-medium'>if You have no acccount <Link  to={'/signup'} className=' text-blue-600 underline  cursor-pointer'>Sign in</Link ></p>
+     <p className=' text-blue-600  text-[14px]  cursor-pointer'> Forget Your Password</p>
         </div>
         
-        </div>
-      </div>
+      
     </div>
+  </div>
   )
 }

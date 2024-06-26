@@ -12,24 +12,35 @@ const {data:coursedata}=UseFetchSingleCourse(data.course)
 
   
 
-return (
+// return (
 
-  <Link to={`/learn/${coursedata?.data?._id}`} className='  w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col justify-center items-start shrink-0  mx-2 h-[200px]'>
-    <div  className='absolute  top-0 w-full h-full  z-[500]   duratioan-75 hover:transform hover:bg-blue-800 flex items-center justify-center  cursor-pointer hover:bg-opacity-40'>
-<BiPlay className='text-3xl text-white '/>
-    </div>
-    <div className='absolute bottom-0 bg-gradient-to-b   from-transparent via-transparent to-zinc-900 w-full h-full z-[200]'></div>
-    <img src={`http://localhost:8080/images/${coursedata?.data?.image}`} className='w-full   mb-2 rounded-md h-full'/>
-    <div className=' absolute  z-[300] mb-[10px]  bottom-0 w-full h-[60px] flex    flex-col'>
-      <p className=' text-[18px] font-bold  text-white line-clamp-2 w-full '> {coursedata?.data?.name} </p>
-      <p className=' text-gray-400 w-full'>{data?.completedModules?.length}  course Completed </p>
+//   <Link to={`/learn/${coursedata?.data?._id}`} className='  w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col justify-center items-start shrink-0  mx-2 h-[200px]'>
+//     <div  className='absolute  top-0 w-full h-full  z-[500]   duratioan-75 hover:transform hover:bg-blue-800 flex items-center justify-center  cursor-pointer hover:bg-opacity-40'>
+// <BiPlay className='text-3xl text-white '/>
+//     </div>
+//     <div className='absolute bottom-0 bg-gradient-to-b   from-transparent via-transparent to-zinc-900 w-full h-full z-[200]'></div>
+//     <img src={`http://localhost:8080/images/${coursedata?.data?.image}`} className='w-full   mb-2 rounded-md h-full'/>
+//     <div className=' absolute  z-[300] mb-[10px]  bottom-0 w-full h-[60px] flex    flex-col'>
+//       <p className=' text-[18px] font-bold  text-white line-clamp-2 w-full '> {coursedata?.data?.name} </p>
+//       <p className=' text-gray-400 w-full'>{data?.completedModules?.length}  course Completed </p>
 
-      <ProgressBar percentage={(data?.completedModules?.length/coursedata?.data?.coursemodules.length)*100} />
-    </div>
+//      
+//     </div>
   
 
+//   </Link>
+  
+//   )
+// }
+return(
+  <Link to={`/learn/${coursedata?.data?._id}`} className='  w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[250px]'>
+    <img src={`http://localhost:8080/images/${coursedata?.data?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
+    <div className='text-black dark:text-white text-[16px] line-clamp-1  mx-1 font-semibold '>{coursedata?.data?.name}</div>
+    <p className=' text-gray-400 text-sm w-full mx-1'>{data?.completedModules?.length} module Completed from {coursedata?.data?.coursemodules?.length}  modules </p>
+<div className='mt-[10px] mx-1 h-[50px] w-full '>
+<ProgressBar percentage={(data?.completedModules?.length/coursedata?.data?.coursemodules?.length)*100} />
+</div>
   </Link>
-  
-  )
-}
+)
 
+}

@@ -70,9 +70,9 @@ export default function Exam() {
     if(ready){
   return (
     <div className='ml-[20%] pl-[10px] w-[80%] h-screen items-center overflow-y-auto  flex flex-col dark:bg-zinc-900 bg-white'>
-        <div className=' fixed top-0  right-[0%] w-[80%] px-[100px]  h-[60px]  bg-purple-700 pt-2 flex  items-center justify-between flex-row'>
+        <div className=' fixed top-0  right-[0%] w-[80%] px-[100px]  h-[60px]  bg-zinc-900 pt-2 flex  items-center justify-between flex-row'>
             <div className='text-white text-[20px] font-bold'>
-                <p className='text-black dark:text-white'>Exam Name</p>
+                <p className='text-white dark:text-white'>Exam Name</p>
             </div>
            <div className='text-white text-[20px] font-bold'>
             Quiz-[1]

@@ -21,7 +21,7 @@ export default function Notification() {
           notifications.map((notification, index) => (
             <div
               key={index}
-              className={`w-full flex items-center dark:text-white justify-between mt-3 shadow-sm shadow-gray-200 px-4 h-[50px]  bg-zinc-900 rounded-md`}
+              className={`w-full flex items-center dark:text-white justify-between mt-3 shadow-sm shadow-gray-200 px-4 h-[50px]  dark:bg-zinc-900 rounded-md`}
             >
               <p>{notification.type}: {notification.message}</p>
               <IoNotificationsCircle size={25} />

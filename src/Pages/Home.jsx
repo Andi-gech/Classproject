@@ -13,7 +13,7 @@ import { MdEmail } from 'react-icons/md';
 
 import ErrorPage from './ErrorPage';
 import { BiErrorCircle } from 'react-icons/bi';
-
+import images from '../assets/im.jpg'
 import { Bars } from 'react-loader-spinner'
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ import UseFetchCatagories from '../Hooks/UseFetchCatagories';
 import UseFetchAllCourses from '../Hooks/UseFetchAllCourses';
 
 import UseFetchAllEnrolles from '../Hooks/UseFetchAllEnrolles';
-import { AiFillStar } from 'react-icons/ai';
+import { AiFillStar,AiOutlineUser } from 'react-icons/ai';
 
 function Home() {
   const authUser = useAuthUser()
@@ -63,9 +63,9 @@ function Home() {
  <div className="sm:w-[70%] w-full   bg-white dark:bg-zinc-900 mb-5   pt-4 justify-center items-center  flex-nowrap  flex flex-col    ">
   <div className='w-[90%] h-[50px] flex-none  relative'>
 
-    <input onChange={(e)=>setSearchParams(e.target.value)} className='w-full h-full border-[1px] active:border-none dark:text-white dark:outline-black dark:border-zinc-800 dark:bg-zinc-900 rounded-[10px]' placeholder='search your fav course here'/>
+    <input onChange={(e)=>setSearchParams(e.target.value)} className='w-full h-full border-[0.2px]  dark:text-white  dark:outline-black dark:border-zinc-800 dark:bg-zinc-900 rounded-[10px]' placeholder='search your fav course here'/>
    <div className='w-[50px] flex items-center justify-center h-[50px]   absolute top-0 right-0'>  <IoSearch size={20} className=''/></div>
-   {searchparams||selecetedCatagory &&  <div className='w-full  flex flex-col py-[20px] px-2 h-[200px] shadow-md items-center   absolute  mt-2 dark:shadow-gray-500  dark:shadow-sm end-0 right-0 bg-white  dark:bg-zinc-900'>
+   {searchparams &&  <div className='w-full  z-40 flex flex-col py-[20px] px-2 h-[200px] shadow-md items-center   absolute  mt-2 dark:shadow-gray-500  dark:shadow-sm end-0 right-0 bg-white  dark:bg-zinc-900'>
   {
     searchdata?.data?.length==0&&<p className='text-center  text-gray-400'>No Course Found</p>
   }
@@ -74,9 +74,10 @@ function Home() {
    
      {searchdata?.data?.map((item)=>{
       return <div className='w-full  h-[65px] mt-2 shadow-sm flex flex-row'>
-        <img src={"https://picsum.photos/300/130"} className='w-[65px] h-[65px] object-cover rounded-md'/>
+        <img src={`http://localhost:8080/images/${item?.image}`} className='w-[65px] h-[65px] object-cover rounded-md'/>
+        
         <div className='w-full ml-4   h-full flex flex-col'>
-        <p className='  text-[18px] text-white font-bold'>{item?.name}</p>
+        <p className='  text-[18px] dark:text-white text-black font-bold'>{item?.name}</p>
         <p className='text-gray-500  text-[15px]'>{item?.modules?.length} Modules Available.</p>
         </div>
             </div>
@@ -84,22 +85,27 @@ function Home() {
     </div>
     
       {true &&  <Bars height={30}/>}
+      
 
    </div>
+   
 }
   </div>
   
-  <div className='w-[90%] h-[180px] mt-[16px] flex-nowrap  overflow-hidden rounded-lg  p-3 bg-gradient-to-r from-blue-200 to-blue-500'>
+  <div style={{
+    backgroundImage: images,
+  }} className=' relative w-[90%] h-[180px] mt-[16px] flex-nowrap  overflow-hidden rounded-lg  p-3 bg-gradient-to-r from-blue-200 to-blue-500'>
     <p className=' text-white'>Online Course</p>
-    <p className=' sm:text-3xl text-black font-j font-bold w-2/3'>Sharpen your skills with Proffsional online courses</p>
+    <p className=' sm:text-3xl text-black font-j font-bold w-2/3'>Sharpen your skills with professional online courses</p>
 
     <Link  to={"/EnrolledCourse"} className='w-[120px] hover:bg-gray-600  cursor-pointer h-[50px] flex items-center justify-center bg-black rounded-md'>
       <p className=' text-white font-bold'>Explore Now</p>
     </Link >
+ 
   </div>
   <div className='w-full flex flex-row h-[60px] flex-nowarp  px-[50px] mt-[18px]'> 
   {catagory?.data?.map((item)=>{
-  return  <div onClick={()=>setSelecetedCatagory(item?._id)} className='w-[250px] mx-[10px] rounded-lg shadow-md h-full bg-white dark:bg-zinc-800 flex  items-center  flex-row'>
+  return  <div onClick={()=>setSelecetedCatagory(item?._id)} className='w-[250px] mx-[10px] rounded-lg shadow-md h-full bg-white dark:bg-zinc-800 flex  items-center  justify-between px-3 flex-row'>
       <div className='w-[50px] h-[50px] rounded-full flex items-center justify-center bg-purple-800'>
         <img src={`http://localhost:8080/images/${item?.image}`} className='w-[50px] h-[50px] object-cover rounded-[10px]'/>
       </div>
@@ -138,13 +144,13 @@ function Home() {
       }
     
       {
-        data?.data?.length===0&& <p className=' bg-slate-50 dark:bg-zinc-950 bg-opacity-50 text-[20px]  flex items-center justify-center h-[150px] w-[90%]  text-gray-400 flex-row'>
+        data?.data?.length===0&& <p className='  bg-opacity-50 text-[20px]  flex items-center justify-center h-[150px] w-[90%]  text-gray-400 flex-row'>
           <BiErrorCircle/> &nbsp;No Course Found</p>
       }
  
     </div>
   
-    Settings
+  
 
 
   </div>
@@ -153,10 +159,12 @@ function Home() {
   </div>
   <div className='w-[90%] flex flex-col  h-[300px]   shadow-sm    flex-nowrap  mt-[4px]'>
 
-<div className='w-full my-2 h-[50px] px-2 flex dark:border-gray-900 py-2   border-b-2 dark:text-white  flex-row  items-center justify-between'>
+<div className='w-full my-2 h-[60px] px-2 flex dark:border-gray-900 py-2   border-b-2 dark:text-white  flex-row  items-center justify-between'>
   <div className='flex flex-row items-center'>
-  <img src='https://picsum.photos/300/130' className='w-[50px] h-[50px] rounded-full'/>
-  <p className='text-[14px] mx-2 font-bold'>Capt Belihu  </p>
+  <AiOutlineUser className='w-[50px] h-[50px] bg-gray-200  text-black dark:bg-zinc-800   dark:text-white rounded-full'/>
+
+ 
+<p className='text-[14px] mx-2 font-bold'>Teacher </p>
   </div>
 
 <div className='flex flex-row'>
@@ -171,14 +179,15 @@ function Home() {
   <p className=' text-[15px] sm:flex hidden'>Web Development</p>
   <div className='flex flex-row items-center justify-center'>
 <div className='w-[100px] h-[40px] flex items-center justify-center rounded-full  dark:bg-zinc-800'>
-  <p className='text-blue-800  text-sm'>Show more</p>
+  <p className='text-blue-400  text-sm'>Show more</p>
 </div>
   </div>
   </div>
-  <div className='w-full my-2 h-[50px] px-2 flex dark:border-gray-900 py-2  border-b-2 dark:text-white  flex-row  items-center justify-between'>
+  <div className='w-full my-2 h-[60px] px-2 flex dark:border-gray-900 py-2  border-b-2 dark:text-white  flex-row  items-center justify-between'>
   <div className='flex flex-row items-center'>
-  <img src='https://picsum.photos/300/130' className='w-[50px] h-[50px] rounded-full'/>
-  <p className='text-[14px] mx-2 font-bold'>Capt Belihu  </p>
+    <AiOutlineUser className='w-[50px] h-[50px] bg-gray-200  text-black dark:bg-zinc-800   dark:text-white rounded-full'/>
+
+  <p className='text-[14px] mx-2 font-bold'>Teacher </p>
   </div>
 
 <div className='flex flex-row'>
@@ -193,7 +202,7 @@ function Home() {
   <p className=' text-[15px] sm:flex hidden'>Web Development</p>
   <div className='flex flex-row items-center justify-center'>
 <div className='w-[100px] h-[30px] flex items-center justify-center rounded-full  dark:bg-zinc-800'>
-  <p className='text-blue-800  text-sm'>Show more</p>
+  <p className='text-blue-400  text-sm'>Show more</p>
 </div>
   </div>
   </div>
@@ -203,7 +212,7 @@ function Home() {
  </div>
  <div className="w-[20%] pr-4 z-20 sm:flex flex-col hidden fixed  right-0 h-screen  p-2 bg-white dark:bg-zinc-900 shadow-sm dark:shadow-gray-700 shadow-gray-200">
  <div className="w-full h-[50px] flex flex-row items-center justify-between ">
-   <p className="text-black dark:text-white ">Your Profile</p>
+   <p className="text-black dark:text-white font-bold ">Your Profile</p>
    <TbDots size={25} className=' transform  rotate-90'/>
 
 
@@ -211,16 +220,16 @@ function Home() {
  <div className='w-full mt-[20px]  flex flex-col items-center justify-center'>
  <div className='w-[100px] h-[100px]'>
    
-   <img src='https://picsum.photos/300/130' className='w-full  rounded-full h-[100px]'/>
+   <AiOutlineUser size={25} className='w-full bg-gray-100  text-black dark:bg-zinc-800 border-2  border-purple-500 dark:text-white rounded-full h-[100px]'/>
  </div>
  <div className='  w-[80%]'>
  <div className='w-full flex flex-col items-center mt-[10px] justify-center dark:text-white '>
  <p className='  text-[18px] font-bold'>Well Come Back</p>
- <p className='text-purple-800 text-[20px] flex  justify-center items-center font-semibold  w-full' >{authUser.name}</p>
- <p className='text-sm dark:text-zinc-500 text-gray-400 flex-row flex items-center'><MdEmail/>{authUser.email}</p>
+ <p className='text-gray-500 text-[18x] flex  justify-center items-center  font-semibold  w-full' >@{authUser.name}</p>
+ <p className='text-sm dark:text-zinc-500 text-gray-400 flex-row flex mt-1 items-center'><MdEmail/>{authUser.email}</p>
 
  </div>
- <p className=' text-sm dark:text-zinc-500 text-center text-gray-400'>continue Your journey And Achieve your goals</p>
+ <p className=' text-sm dark:text-zinc-500 mt-2 text-center text-gray-700'>continue Your journey And Achieve your goals</p>
  </div>
  </div>
  

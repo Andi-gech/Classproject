@@ -3,13 +3,16 @@ import logo from '../assets/Untitled.png'
 import { AiFillStar, AiOutlineHome ,AiOutlineTrophy} from "react-icons/ai";
 import { IoIosNotificationsOutline ,IoMdSettings,IoMdOpen} from "react-icons/io";
 import { TiBook } from "react-icons/ti";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import Switcher from '../Components/Switch';
 import image from '../assets/curvestyle.png'
 export default function Header() {
     const signOut = useSignOut();
     const navigate = useNavigate();
+
+  
+
   return (
     
     <div className='  w-[18%] sm:flex fixed hidden left-0  h-screen rounded-md  bg-white  dark:text-white dark:bg-zinc-900  flex-col items-center dark:shadow-gray-600 shadow-gray-300  shadow-sm  z-10'>
@@ -50,7 +53,7 @@ export default function Header() {
       <div className='w-[80%]   px-2 h-[50px]  hover:text-blue-800  cursor-pointer text-center ml-[30px]  shadow-sm     font-light text-[15px]  flex-row flex items-center '>
         <img src='https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=2000' alt='user' className='h-[30px] w-[30px] rounded-full' /> 
         <div className='flex   w-[170px]  flex-col justify-center  pl-3 items-start'>
-          <p className='m-0 p-0 dark:text-white text-black font-normal    text-sm  '>Mr. Smith</p>
+          <p className='m-0 p-0 dark:text-white text-black font-normal    text-sm  '>Mr. Abebe</p>
           {/* <p className=' font-serif text-[12px]  text-gray-600'>Accountant</p> */}
           <div className='w-full flex flex-row text-sm items-center'>
             <AiFillStar color='orange'/>
@@ -65,7 +68,7 @@ export default function Header() {
           <div className='w-[80%]  mt-3  px-2 h-[50px]  hover:text-blue-800  cursor-pointer text-center ml-[30px]  shadow-sm     font-light text-[15px]  flex-row flex items-center '>
         <img src='https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=2000' alt='user' className='h-[30px] w-[30px] rounded-full' /> 
         <div className='flex   w-[170px]  flex-col justify-center  pl-3 items-start'>
-          <p className='m-0 p-0 dark:text-white text-black font-normal    text-sm  '>Mr. Smith</p>
+          <p className='m-0 p-0 dark:text-white text-black font-normal    text-sm  '>Mr. Abebe</p>
           {/* <p className=' font-serif text-[12px]  text-gray-600'>Accountant</p> */}
           <div className='w-full flex flex-row text-sm items-center'>
             <AiFillStar color='orange'/>

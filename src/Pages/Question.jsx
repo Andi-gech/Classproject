@@ -18,9 +18,9 @@ export default function Question({onclick,question}) {
         Answerid:item?._id,
         Questionid:question?._id
      })
-     setselectedanswer(item?._id)}} className={`${selectedanswer===item?._id?"bg-purple-900 text-white" :""}  rounded-md hover:bg-purple-900 hover:text-white  cursor-pointer shadow-sm dark:shadow-gray-800 shadow-gray-300 mx-[50px]  flex-shrink-0 mt-3 flex flex-row max-w-[600px] p-[13px]`}>
-     <p className='font-bold text-black dark:text-white mx-2' >{key+1}</p>
-     <p className='text-black dark:text-white' >
+     setselectedanswer(item?._id)}} className={`${selectedanswer===item?._id?"bg-zinc-900 text-white" :""}  rounded-md hover:bg-zinc-900 hover:text-white  cursor-pointer shadow-sm dark:shadow-gray-800 shadow-gray-300 mx-[50px]  flex-shrink-0 mt-3 flex flex-row max-w-[600px] p-[13px]`}>
+     <p className={`font-bold text-black ${selectedanswer===item?._id?" text-white" :""} dark:text-white mx-2`} >{key+1}</p>
+     <p className={`${selectedanswer===item?._id?" text-white" :""} dark:text-white`} >
      {
         item?.answer
      } </p>
