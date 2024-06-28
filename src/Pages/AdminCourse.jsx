@@ -1,17 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UseFetchAdminCourse from '../Hooks/useFetchAdminCourse';
+import { BsArrowLeft } from 'react-icons/bs';
 
 export default function AdminCourse() {
   const { data } = UseFetchAdminCourse();
   
   return (
-    <div className='ml-[20%] w-[80%] flex items-center flex-col'>
-      <div className='w-full h-[80px] pt-2 bg-gray-800 text-white px-4 p-[10px] justify-center items-center flex flex-row rounded-t-md shadow-md'>
-        <p className='text-xl font-semibold'>My Courses</p>
-      </div>
+    <div className='sm:ml-[20%] flex relative flex-col  sm:w-[80%] w-full'>
+    <div className='w-[90%] h-[100px] mt-2  bg-blue-800 text-white flex items-center justify-center rounded-md shadow-md'>
+      <div className='absolute hover:bg-zinc-50 hover:bg-opacity-15 rounded-full p-[10px] left-4' onClick={() => navigate(-1)}><BsArrowLeft size={30}/></div>
       
-      <div className='w-full overflow-y-scroll pb-[50px] h-[400px] flex-wrap flex flex-row items-center justify-center bg-gray-100 shadow-md rounded-b-md'>
+      
+      <p className='text-3xl font-bold'>My Courses</p>
+    </div>
+      
+      <div className='w-full overflow-y-scroll pb-[50px] h-[400px] flex-wrap flex flex-row items-start bg-gray-100 shadow-md rounded-b-md'>
         {
           data?.data?.map(
             (item) => (
@@ -21,7 +25,7 @@ export default function AdminCourse() {
                 className='w-[300px] h-[200px] mt-[20px] mx-[10px] bg-white shadow-md rounded-md hover:shadow-lg transition duration-200'
               >
                 <img 
-                  src={"https://picsum.photos/300/130"} 
+                  src={'http://localhost:8080/' + item.image} 
                   className='w-full h-[60%] object-cover rounded-t-md' 
                   alt={item.name} 
                 />

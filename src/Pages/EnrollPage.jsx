@@ -10,7 +10,7 @@ import UseFetchSingleCourse from '../Hooks/UseFetchSingleCourse'
 export default function EnrollPage() {
   const {courseid}=useParams()
   const {data}=UseFetchEachCourse(courseid)
-  const {data:enroll}=UseFetchEnrollCourse(courseid)
+  const {data:enroll,refetch}=UseFetchEnrollCourse(courseid)
   const {data:course}=UseFetchSingleCourse(courseid)
   const [error,setError]=useState()
   const [sucess,setSucess]=useState()
@@ -24,7 +24,7 @@ const handleEnroll=async()=>{
     if (result.status === 200) {
 
       setSucess(result.data.message)
-    navigate('/EnrolledCourse')
+      refetch()
       
 
     } 

@@ -23,6 +23,7 @@ import UseFetchAllCourses from '../Hooks/UseFetchAllCourses';
 
 import UseFetchAllEnrolles from '../Hooks/UseFetchAllEnrolles';
 import { AiFillStar,AiOutlineUser } from 'react-icons/ai';
+import SlideCards from '../Components/SlideCards';
 
 function Home() {
   const authUser = useAuthUser()
@@ -59,8 +60,8 @@ function Home() {
 
   return (
  
- <div className='sm:ml-[20%] flex relative sm:w-[80%] w-full'>
- <div className="sm:w-[70%] w-full   bg-white dark:bg-zinc-900 mb-5   pt-4 justify-center items-center  flex-nowrap  flex flex-col    ">
+ <div className='sm:ml-[20%] flex relative dark:bg-black sm:w-[80%] w-full'>
+ <div className="sm:w-[70%] w-full     mb-5   pt-4 justify-center items-center  flex-nowrap  flex flex-col    ">
   <div className='w-[90%] h-[50px] flex-none  relative'>
 
     <input onChange={(e)=>setSearchParams(e.target.value)} className='w-full h-full border-[0.2px]  dark:text-white  dark:outline-black dark:border-zinc-800 dark:bg-zinc-900 rounded-[10px]' placeholder='search your fav course here'/>
@@ -93,10 +94,15 @@ function Home() {
   </div>
   
   <div style={{
-    backgroundImage: images,
-  }} className=' relative w-[90%] h-[180px] mt-[16px] flex-nowrap  overflow-hidden rounded-lg  p-3 bg-gradient-to-r from-blue-200 to-blue-500'>
+    backgroundImage: `url(${images})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+  
+    objectFit: 'contain',
+  }} className=' relative w-[90%] h-[180px]   mt-[16px] flex-nowrap  overflow-hidden rounded-lg  p-3 '>
+    
     <p className=' text-white'>Online Course</p>
-    <p className=' sm:text-3xl text-black font-j font-bold w-2/3'>Sharpen your skills with professional online courses</p>
+    <p className=' sm:text-3xl text-white font-j font-bold w-2/3'>Sharpen your skills with professional online courses</p>
 
     <Link  to={"/EnrolledCourse"} className='w-[120px] hover:bg-gray-600  cursor-pointer h-[50px] flex items-center justify-center bg-black rounded-md'>
       <p className=' text-white font-bold'>Explore Now</p>
@@ -129,26 +135,8 @@ function Home() {
     <p className=' text-[18px] dark:text-white  font-semibold text-black'>Continue watching</p>
   </div>
  
-  <div className='w-[90%] flex flex-row   overflow-hidden '>
-    <div className='min-w-full pl-2  flex flex-row  relative'>
-      <div className='absolute bg-opacity-50  flex items-center justify-center shadow-sm shadow-zinc-600 backdrop:blur-md bg-white rounded-full z-20 top-[55px] left-0 w-[50px] h-[50px] bg-gray-[50px]'>
-      <FaAngleDoubleLeft/>
-      </div>
-      <div className='absolute bg-opacity-50  shadow-sm shadow-zinc-600 backdrop:blur-md bg-white rounded-full z-20 top-[55px] right-0 w-[50px] h-[50px] flex items-center justify-center bg-gray-[50px]'>
-        <FaAngleDoubleRight/>
-      </div>
-      {
-        data?.data?.map((data)=>{
-          return <CourseCard key={data?._id} data={data} id={data?._id}/>
-        })
-      }
-    
-      {
-        data?.data?.length===0&& <p className='  bg-opacity-50 text-[20px]  flex items-center justify-center h-[150px] w-[90%]  text-gray-400 flex-row'>
-          <BiErrorCircle/> &nbsp;No Course Found</p>
-      }
- 
-    </div>
+  <div className='w-[90%] flex flex-row    '>
+   <SlideCards data={data}/>
   
   
 
@@ -210,7 +198,7 @@ function Home() {
  
   
  </div>
- <div className="w-[20%] pr-4 z-20 sm:flex flex-col hidden fixed  right-0 h-screen  p-2 bg-white dark:bg-zinc-900 shadow-sm dark:shadow-gray-700 shadow-gray-200">
+ <div className="w-[20%] pr-4  bg-white  rounded-l-lg z-20 sm:flex flex-col hidden fixed  right-0 h-screen  p-2  shadow-lg dark:shadow-gray-700 shadow-gray-300">
  <div className="w-full h-[50px] flex flex-row items-center justify-between ">
    <p className="text-black dark:text-white font-bold ">Your Profile</p>
    <TbDots size={25} className=' transform  rotate-90'/>
@@ -218,9 +206,10 @@ function Home() {
 
  </div>
  <div className='w-full mt-[20px]  flex flex-col items-center justify-center'>
- <div className='w-[100px] h-[100px]'>
+ <div className='w-[70px] h-[70px]'>
    
-   <AiOutlineUser size={25} className='w-full bg-gray-100  text-black dark:bg-zinc-800 border-2  border-purple-500 dark:text-white rounded-full h-[100px]'/>
+
+ <img src={'https://picsum.photos/70'} className='w-[70px] border-[2px]  border-blue-500  h-[70px] rounded-full' alt='Profile' />
  </div>
  <div className='  w-[80%]'>
  <div className='w-full flex flex-col items-center mt-[10px] justify-center dark:text-white '>

@@ -29,6 +29,9 @@ export default function AdminCourseDetail() {
                 </div>
               ))
             }
+            {data?.data?.enrolledStudents?.length === 0 && <p className='w-full h-[50px] flex items-center justify-center bg-white rounded-md p-2 shadow-sm mt-2'>No enrolled users</p>}
+          
+
           </div>
         </div>
         
@@ -38,7 +41,8 @@ export default function AdminCourseDetail() {
           {
             data?.data?.courseModules?.map((item) => (
               <div key={item._id} className='w-full h-[50px] flex flex-row items-center justify-between bg-white rounded-md p-2 shadow-sm mt-2'>
-                <p className='text-md font-semibold'>{item.name}</p>
+                
+                <p className='text-md font-semibold '><span className='text-gray-500 mx-2 text-sm'>({item.order})</span>{item.name}</p>
                 <Link to={`/Adminstrator/MyCourse/${courseid}/${item._id}/addexam`} className='text-blue-600 hover:text-blue-800 transition duration-200'>
                   Add exams
                 </Link>

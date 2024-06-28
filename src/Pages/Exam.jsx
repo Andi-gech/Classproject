@@ -69,8 +69,8 @@ export default function Exam() {
    
     if(ready){
   return (
-    <div className='ml-[20%] pl-[10px] w-[80%] h-screen items-center overflow-y-auto  flex flex-col dark:bg-zinc-900 bg-white'>
-        <div className=' fixed top-0  right-[0%] w-[80%] px-[100px]  h-[60px]  bg-zinc-900 pt-2 flex  items-center justify-between flex-row'>
+    <div className='ml-[18%]  w-[93%] min-h-screen items-center   overflow-hidden flex flex-col dark:bg-zinc-900 bg-white'>
+        <div className=' fixed top-0  right-[0%] w-[83%] px-[100px]  h-[60px] overflow-y-hidden  bg-blue-900 pt-2 flex  items-center justify-between flex-row'>
             <div className='text-white text-[20px] font-bold'>
                 <p className='text-white dark:text-white'>Exam Name</p>
             </div>
@@ -85,7 +85,7 @@ export default function Exam() {
             </p>
            </div>
         </div>
-        <div className='py-[50px]   w-full '>
+        <div className='py-[50px]   overflow-y-hidden  w-full  '>
             {
                 data?.data?.questions?.map((question)=>{
                     return <Question key={question._id} selectedanswer={examAnswers.find(item => item.Questionid === question.id)} question={question} onclick={(data)=>HandleExamOptions(data)}/>
@@ -118,15 +118,15 @@ export default function Exam() {
 if(!ready){
 return (
     <div className='ml-[20%] w-[80%] h-screen  dark:bg-zinc-950 flex flex-col  items-center py-5 px-5 justify-center '>
-        <div className='w-[600px] h-[400px] dark:shadow-gray-600 shadow-zinc-700 flex items-center justify-center flex-col   shadow-sm'>
+        <div className='w-[600px] h-[400px] dark:shadow-gray-600 rounded-md shadow-zinc-700 bg-blue-800 flex items-center justify-center flex-col   shadow-sm'>
 <div  className='p-[50px] flex  flex-col  items-center justify-center'>
-<div className=' text-black dark:text-white font-bold    text-[24px]'>Notice</div>
-        <div className='h-full bg-white  dark:bg-zinc-950 flex flex-col  items-center'>
-            <p className=' text-black dark:text-white'>You Are About To Start A Small Quiz.The Quiz Contains 5 Questions And Each Question Contains 4 Options  You Have 30 Min To Complete The Quiz</p>
+<div className='  text-white font-bold    text-[24px]'>Notice</div>
+        <div className='h-full bg-zinc-250 flex flex-col  items-center'>
+            <p className='  text-white'>You Are About To Start A Small Quiz.The Quiz Contains 5 Questions And Each Question Contains 4 Options  You Have 30 Min To Complete The Quiz</p>
             <p className=' text-gray-400  text-sm'>Do You Want To Start The Quiz Now</p>
         <div onClick={()=>{setready(true)
-      }} className='w-[200px] cursor-pointer hover:bg-opacity-85 h-[50px] mt-3 flex items-center justify-center bg-purple-600 rounded-full'>
-            <p className=' text-white'>Start Quiz</p>
+      }} className='w-[200px] cursor-pointer rounded-md shadow-gray-200 shadow-md hover:bg-opacity-85 h-[50px] mt-3 flex items-center justify-center bg-white '>
+            <p className=' text-black'>Start Quiz</p>
         </div>
         </div>
 </div>

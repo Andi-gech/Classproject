@@ -4,6 +4,9 @@ import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
 import UseFetchCategories from '../Hooks/UseFetchCatagories';
 import SuccessPopup from '../Components/SucessPopup';
 import ErrorPopup from '../Components/ErrorPopup';
+import { BiArrowFromLeft, BiArrowFromRight } from 'react-icons/bi';
+import { BsArrowLeft } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 export default function Admin() {
   const [modules, setModules] = useState([{ name: '' }]);
@@ -15,6 +18,8 @@ export default function Admin() {
   const [imageFile, setImageFile] = useState(null);
 
   const authHeader = useAuthHeader();
+  
+  const navigate = useNavigate();
 
   const handleSave = async () => {
     const formData = new FormData();
@@ -32,9 +37,9 @@ export default function Admin() {
         }
       });
       console.log('Course saved:', response.data);
-      setSuccess(true);
+      setSuccess('Course created successfully');
       setTimeout(() => {
-        setSuccess(false);
+        setSuccess(null);
       }, 2000);
       setCourseName('');
       setCourseDescription('');
@@ -42,9 +47,9 @@ export default function Admin() {
       setImageFile(null);
     } catch (error) {
       console.error('Error saving course:', error);
-      setError(true);
+      setError(error.response.data);
       setTimeout(() => {
-        setError(false);
+        setError(null);
       }, 3000);
     }
   };
@@ -53,14 +58,17 @@ export default function Admin() {
   
 
   return (
-    <div className='sm:ml-[20%] flex relative flex-col items-center sm:w-[80%] w-full'>
-      <div className='w-[90%] h-[70px] mt-2 bg-gray-800 text-white flex items-center justify-center rounded-md shadow-md'>
-        <p className='text-3xl font-bold'>Admin</p>
+    <div className='sm:ml-[20%] flex relative flex-col  sm:w-[80%] w-full'>
+      <div className='w-[90%] h-[100px] mt-2  bg-blue-800 text-white flex items-center justify-center rounded-md shadow-md'>
+        <div className='absolute hover:bg-zinc-50 hover:bg-opacity-15 rounded-full p-[10px] left-4' onClick={() => navigate(-1)}><BsArrowLeft size={30}/></div>
+        
+        <p className='text-3xl font-bold'>Create Course</p>
       </div>
 
-      <div className='w-[90%] bg-white rounded-md shadow-md p-6 mt-6'>
-        {success && <SuccessPopup />}
-        {error && <ErrorPopup />}
+      <div className='w-[90%] relative bg-white rounded-md shadow-md p-6 mt-6'>
+      {success && <div className='absolute top-0 right-0'><SuccessPopup sucess={success}/></div>}
+       
+        {error && <div className='absolute top-0 right-0'><ErrorPopup error={error} /></div>}
         <div className='w-full mt-3 flex flex-col'>
           <label className='text-lg font-semibold'>Course Name</label>
           <input

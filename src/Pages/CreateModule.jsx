@@ -53,9 +53,9 @@ export default function CreateModule() {
       setCourseName('');
       setModuleContent('');
     } catch (error) {
-      setError(true);
+      setError(error);
       setTimeout(() => {
-        setError(false);
+        setError(null);
       }, 3000);
       console.error('Error saving module:', error);
     }
@@ -67,8 +67,12 @@ export default function CreateModule() {
         <p className='text-2xl font-bold text-gray-800'>Create Module</p>
       </div>
       
-      {success && <SucessPopup />}
-      {error && <ErrorPopup />}
+      {success && <div className='absolute top-[10px] right-[200px]'> <SucessPopup sucess={"Module created successfully"} />
+      </div>}
+      {error && 
+      <div className='absolute top-[10px] right-[200px]'>
+      <ErrorPopup error={error.response.data} />
+      </div>}
      
       <div className='w-[90%] mt-3 flex flex-row items-center'>
         <p className='mr-4'>Module Order</p>

@@ -11,6 +11,6 @@ export default function UseFetchModuleContent(moduleid) {
         return axios.get(`http://localhost:8080/api/coursemodule/${moduleid}`,{headers:{'_auth':`${authHeader}`}})
     }
   
-    return useQuery({ queryKey: ['CourseModuleContent',moduleid], queryFn: Fetchcourse,enabled: !!(moduleid) })
+    return useQuery({ queryKey: ['CourseModuleContent',moduleid], queryFn: Fetchcourse,enabled: !!moduleid })
  
 }

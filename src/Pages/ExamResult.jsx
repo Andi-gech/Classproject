@@ -7,32 +7,46 @@ export default function ExamResult({mark,isPassed,onretake,link}) {
 
 
 
-  return (
-    <div className='w-[80%] h-full text-black dark:text-white dark:bg-zinc-950  bg-white fixed top-0 right-0 flex items-center justify-center flex-col'>
-    <div className='w-[600px] h-[400px] flex items-center justify-center flex-col    shadow-sm shadow-gray-500'>
-<div  className='p-[50px] flex  flex-col  items-center justify-center'>
-  {isPassed?<div className=' text-black dark:text-white font-bold    text-[44px]'>Congratuation</div>:<div className='font-bold    text-[44px] text-red-500 '>
-    Sorry:You Have Faild The exam</div>}
-{isPassed&&<p className='text-gray-400   text-sm'>You Have Completed The Quiz</p>}
-
-<div className='text-black dark:text-white flex flex-row'>
-<p className='text-[20px] font-bold'>Your Have got </p>
-<p className='text-[20px] font-bold text-green-600'> &nbsp; { mark } &nbsp;</p>
-
-
-</div>
+if(!isPassed)
 {
-isPassed ? <Link to={-1} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
+  return (
+    <div className='fixed top-0 bg-white w-full h-full flex  items-center justify-center '>
+    <div className='w-[40%] h-[400px] shadow-md shadow-gray-400 bg-white '>
+      <div className='w-full text-black font-bold text-lg  shadow-sm shadow-white h-[50px] flex flex-col items-center justify-center'>
+  Good Job : You Have Pass The Exam
+      </div>
+      <div className='w-full flex flex-col items-center justify-center'>
+      <Link to={-1} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
 <p className=' font-bold'>Go to Next Lesson</p>
-</Link>:<Link  onClick={onretake} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
+</Link>
+      </div>
+     
+
+
+    </div>
+  </div>
+  )
+}
+else
+{
+  return (
+    <div className='fixed top-0 bg-white w-full h-full flex  items-center justify-center '>
+      <div className='w-[40%] h-[400px] shadow-md shadow-gray-400 bg-white '>
+        <div className='w-full text-black font-bold text-lg  shadow-sm shadow-white h-[50px] flex flex-col items-center justify-center'>
+    Sorry : You Have Faild The Exam
+        </div>
+        <div className='w-full flex flex-col items-center justify-center'>
+        <Link  onClick={onretake} className='w-[300px] bg-purple-600 mt-3 rounded-full text-white h-[50px] flex items-center justify-center'>
 <p className=' font-bold'>Retake</p>
 </Link>
-}
+        </div>
+       
 
 
-  
-    </div>
       </div>
-      </div> 
+    </div>
   )
+
+}
+ 
 }

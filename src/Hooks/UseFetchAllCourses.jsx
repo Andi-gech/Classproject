@@ -10,12 +10,12 @@ export default function UseFetchAllCourses(searchparams, selectedCategory) {
         category: selectedCategory, // Corrected typo: 'catagory' to 'category'
     };
 
-    const Fetchcourse = () => {
-        return axios.get('http://localhost:8080/api/courses', {
+    const Fetchcourse =async () => {
+        return await axios.get('http://localhost:8080/api/courses', {
             headers: { '_auth': authHeader },
             params: params, // Pass the params object here
         });
     };
 
-    return useQuery({ queryKey: ['fetchAllCourses', searchparams, selectedCategory], enabled: !!(searchparams||selectedCategory), queryFn: Fetchcourse });
+    return useQuery({ queryKey: ['fetchAllCourse', searchparams, selectedCategory], queryFn: Fetchcourse });
 }

@@ -33,11 +33,11 @@ const {data:coursedata}=UseFetchSingleCourse(data.course)
 //   )
 // }
 return(
-  <Link to={`/learn/${coursedata?.data?._id}`} className='  w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[250px]'>
+  <Link to={`/learn/${coursedata?.data?._id}`} className='   w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[230px]'>
     <img src={`http://localhost:8080/images/${coursedata?.data?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
     <div className='text-black dark:text-white text-[16px] line-clamp-1  mx-1 font-semibold '>{coursedata?.data?.name}</div>
     <p className=' text-gray-400 text-sm w-full mx-1'>{data?.completedModules?.length} module Completed from {coursedata?.data?.coursemodules?.length}  modules </p>
-<div className='mt-[10px] mx-1 h-[50px] w-full '>
+<div className='mt-[10px] mx-1 h-[40px] w-full '>
 <ProgressBar percentage={(data?.completedModules?.length/coursedata?.data?.coursemodules?.length)*100} />
 </div>
   </Link>

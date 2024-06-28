@@ -10,9 +10,9 @@
       }, [count,percentage]);
     
    return (
-     <div className=' w-[90%]  bg-zinc-100   h-[5px]  rounded-full'>
+     <div className=' w-[90%]  bg-zinc-200   h-[6px]  rounded-full'>
     
-       <div style={{width:`${count}%`,backgroundColor:"green" }} className={`   h-full rounded-full`}></div>
+       <div style={{width:`${count}%`}} className="h-full bg-yellow-500 rounded-full"></div>
      </div>
    )
  }
