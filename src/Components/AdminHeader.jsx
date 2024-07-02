@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../assets/Untitled.png'
-import { AiFillStar, AiOutlineBook, AiOutlineHome ,AiOutlineTrophy} from "react-icons/ai";
+import { AiFillMoneyCollect, AiFillPayCircle, AiFillStar, AiOutlineBook, AiOutlineHome ,AiOutlineTrophy, AiTwotoneBook} from "react-icons/ai";
 import { IoIosNotificationsOutline ,IoMdSettings,IoMdOpen} from "react-icons/io";
 import { TiBook } from "react-icons/ti";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -8,9 +8,12 @@ import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import Switcher from '../Components/Switch';
 import image from '../assets/curvestyle.png'
 import { PiPlus } from 'react-icons/pi';
+import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
+import { CgUserList } from 'react-icons/cg';
 export default function AdminHeader() {
     const signOut = useSignOut();
     const navigate = useNavigate();
+    const auth = useAuthUser();
 
   
 
@@ -26,6 +29,48 @@ export default function AdminHeader() {
     </div>
     <Switcher/>
     </div>
+    {
+      auth.role==='admin'&&
+      <div className='w-full h-[90%] flex flex-col justify-between'>
+        <div className='w-full flex-col'>
+        <div className='w-full my-[10px]   flex items-center  justify-start px-[40px]'>
+        <p className='   text-[14px]  text-white    '>Admin Management</p>
+        </div>
+      
+        
+        <Link  to='/Adminstrator/User' className='w-full  mt-0  shadow-sm shadow-gray-700  hover:text-blue-800  cursor-pointer text-center  h-[50px] px-[40px]  font-light  text-[15px]  flex-row flex items-center '>
+    <CgUserList size={20}  className='  text-blue-300 '  /> <p className='ml-2  text-blue-300   font-normal    '>Manage Users</p>   </Link >
+       
+        <Link  to={'/Adminstrator/courseManagment'} className='w-full  mt-0  shadow-sm shadow-gray-700 hover:text-blue-800  cursor-pointer  text-center  h-[50px] px-[30px]  font-light  text-[15px] flex items-center '>
+    <TiBook size={20} className=' text-white  ' /> <p className='ml-2  text-white  font-normal '>Course Management</p>   </Link>  
+        <Link to={'/Adminstrator/PaymentManagment'} className='w-full  mt-0  shadow-sm shadow-gray-700 hover:text-blue-800  cursor-pointer  text-center  h-[50px] px-[40px]  font-light  text-[15px] flex items-center '>
+     <AiFillMoneyCollect size={20} className=' text-white  ' /> <p  className='ml-2  text-white   font-normal'>Manage Payments</p> 
+        </Link>
+        <Link to={'/Adminstrator/Createcatagory'} className='w-full  mt-0  shadow-sm shadow-gray-700 hover:text-blue-800  cursor-pointer  text-center  h-[50px] px-[40px]  font-light  text-[15px] flex items-center '>
+     <AiTwotoneBook size={20} className=' text-white  ' /> <p  className='ml-2  text-white   font-normal'>Create catagory</p> 
+        </Link>
+        </div>
+   
+    
+        <div className='mb-2'>
+         
+          
+         
+        <div className='w-full  mt-2  hover:text-blue-800  cursor-pointer text-center ml-[40px] h-[30px]    font-light text-[15px]  flex-row flex items-center '>
+    <IoMdSettings size={20} className=' text-white text-black '    /> <p className='ml-2  text-white font-normal text-black   '>Settings</p>   </div>
+    <div onClick={()=>{signOut()
+    navigate('/login')
+  }} className='w-full  mt-2  hover:text-blue-800  cursor-pointer text-center ml-[40px] h-[30px]    font-light text-[15px]  flex-row flex items-center '>
+    <IoMdOpen size={20} className=' text-white text-black '    /> <p className='ml-2  text-white text-black  font-normal  '>LogOut</p>   </div>
+    
+        </div>
+        
+       
+    
+      </div>
+    }
+
+  {auth.role==='teacher'&&
     <div className='w-full h-[90%] flex flex-col justify-between'>
       <div className='w-full flex-col'>
       <div className='w-full my-[10px]   flex items-center  justify-start px-[40px]'>
@@ -60,7 +105,7 @@ export default function AdminHeader() {
      
   
     </div>
-  
+}
   
    </div>
   )

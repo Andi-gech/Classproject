@@ -29,6 +29,13 @@ function Home() {
   const authUser = useAuthUser()
   const [searchparams,setSearchParams]=useState(null)
   const [selecetedCatagory,setSelecetedCatagory]=useState()
+  const calculateavgrate=(data)=>{
+    let sum=0
+    data?.forEach((ele)=>{
+      sum+=ele.rate
+    })
+    return (sum/data?.length).toFixed(2)
+  }
     const generateGraph = () => {
         const graphs = []
         for (let i = 0; i < 7; i++) {
@@ -66,7 +73,7 @@ function Home() {
 
     <input onChange={(e)=>setSearchParams(e.target.value)} className='w-full h-full border-[0.2px]  dark:text-white  dark:outline-black dark:border-zinc-800 dark:bg-zinc-900 rounded-[10px]' placeholder='search your fav course here'/>
    <div className='w-[50px] flex items-center justify-center h-[50px]   absolute top-0 right-0'>  <IoSearch size={20} className=''/></div>
-   {searchparams &&  <div className='w-full  z-40 flex flex-col py-[20px] px-2 h-[200px] shadow-md items-center   absolute  mt-2 dark:shadow-gray-500  dark:shadow-sm end-0 right-0 bg-white  dark:bg-zinc-900'>
+   {searchparams &&  <div className='w-full  z-40 flex flex-col py-[20px] overflow-y-auto px-2 h-[200px] shadow-md items-center   absolute  mt-2 dark:shadow-gray-500  dark:shadow-sm end-0 right-0 bg-white  dark:bg-zinc-900'>
   {
     searchdata?.data?.length==0&&<p className='text-center  text-gray-400'>No Course Found</p>
   }
@@ -85,7 +92,7 @@ function Home() {
     })}
     </div>
     
-      {true &&  <Bars height={30}/>}
+      {searchisLoading &&  <Bars height={30}/>}
       
 
    </div>
@@ -146,54 +153,34 @@ function Home() {
     <p className=' text-[18px] dark:text-white  font-semibold text-black'>Your Mentors</p>
   </div>
   <div className='w-[90%] flex flex-col  h-[300px]   shadow-sm    flex-nowrap  mt-[4px]'>
-
-<div className='w-full my-2 h-[60px] px-2 flex dark:border-gray-900 py-2   border-b-2 dark:text-white  flex-row  items-center justify-between'>
-  <div className='flex flex-row items-center'>
-  <AiOutlineUser className='w-[50px] h-[50px] bg-gray-200  text-black dark:bg-zinc-800   dark:text-white rounded-full'/>
-
- 
-<p className='text-[14px] mx-2 font-bold'>Teacher </p>
-  </div>
-
-<div className='flex flex-row'>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13}/>
-  <p className='text-[10px]'>(4.0)</p>
- 
-</div>
-  <p className=' text-[15px] sm:flex hidden'>Web Development</p>
-  <div className='flex flex-row items-center justify-center'>
-<div className='w-[100px] h-[40px] flex items-center justify-center rounded-full  dark:bg-zinc-800'>
-  <p className='text-blue-400  text-sm'>Show more</p>
-</div>
-  </div>
-  </div>
-  <div className='w-full my-2 h-[60px] px-2 flex dark:border-gray-900 py-2  border-b-2 dark:text-white  flex-row  items-center justify-between'>
-  <div className='flex flex-row items-center'>
-    <AiOutlineUser className='w-[50px] h-[50px] bg-gray-200  text-black dark:bg-zinc-800   dark:text-white rounded-full'/>
-
-  <p className='text-[14px] mx-2 font-bold'>Teacher </p>
-  </div>
-
-<div className='flex flex-row'>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13} color='orange'/>
-  <AiFillStar size={13}/>
-  <p className='text-[10px]'>(4.0)</p>
- 
-</div>
-  <p className=' text-[15px] sm:flex hidden'>Web Development</p>
-  <div className='flex flex-row items-center justify-center'>
-<div className='w-[100px] h-[30px] flex items-center justify-center rounded-full  dark:bg-zinc-800'>
-  <p className='text-blue-400  text-sm'>Show more</p>
-</div>
-  </div>
-  </div>
+{data?.data?.map((item)=>{
+  return(
+    <div className='w-full my-2 h-[60px] px-2 flex dark:border-gray-900 py-2   border-b-2 dark:text-white  flex-row  items-center justify-between'>
+      <div className='flex flex-row items-center'>
+      <AiOutlineUser className='w-[50px] h-[50px] bg-gray-200  text-black dark:bg-zinc-800   dark:text-white rounded-full'/>
+    
+     
+    <p className='text-[14px] mx-2 font-bold'>{item?.course.createdBy.fullName}</p>
+      </div>
+    
+    <div className='flex flex-row'>
+      <AiFillStar size={13} color={calculateavgrate(item?.course?.createdBy?.rating) >= 1 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={calculateavgrate(item?.course?.createdBy?.rating) >= 2 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={calculateavgrate(item?.course?.createdBy?.rating) >= 3 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={calculateavgrate(item?.course?.createdBy?.rating) >= 4 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={calculateavgrate(item?.course?.createdBy?.rating) >= 5 ? 'orange' : 'gray'}/>
+      <p className='text-[10px]'>({calculateavgrate(item?.course?.createdBy?.rating)})</p>
+     
+    </div>
+      <p className=' text-[15px] sm:flex hidden'>Web Development</p>
+      <div className='flex flex-row items-center justify-center'>
+    <div className='w-[100px] h-[40px] flex items-center justify-center rounded-full  dark:bg-zinc-800'>
+      <p className='text-blue-400  text-sm'>Show more</p>
+    </div>
+      </div>
+      </div>)
+})}
+  
   </div>
  
   

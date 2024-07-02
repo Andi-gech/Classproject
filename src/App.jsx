@@ -20,6 +20,10 @@ import AdminHeader from './Components/AdminHeader';
 import RoleAuthentication from './Components/RoleAuthentication';
 import ErrorPage from './Pages/ErrorPage';
 import notFound from './assets/404.png'
+import AdminUser from './Pages/AdminUser';
+import AdminCourseManagment from './Pages/AdminCourseManagment';
+import PaymentManagment from './Components/PaymentManagment';
+import AdminUserDetail from './Pages/AdminUserDetail';
 
 function App() {
   const location = useLocation();
@@ -35,7 +39,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className='w-full font-j dark:bg-black    overflow-hidden bg-slate-50  flex-1 overflow-y-auto flex'>
+    <div className='w-full font-j dark:bg-black    overflow-hidden bg-slate-50  flex-1  flex'>
       <Routes>
         <Route path="/" element={<RequireAuth fallbackPath='/login'><RoleAuthentication allowedRoles={['student']} children={<><Header /><Home /></>} /></RequireAuth>} />
         <Route path="/Notification" element={<RequireAuth fallbackPath='/login'>
@@ -56,8 +60,12 @@ function App() {
         <Route path="Adminstrator/MyCourse/:courseid/AddModule" element={<RequireAuth fallbackPath='/login'><RoleAuthentication allowedRoles={['teacher']} children={<><AdminHeader /><CreateModule /></>}/></RequireAuth>} />
         <Route path="Adminstrator/MyCourse/:courseid/:mid/addexam" element={<RequireAuth fallbackPath='/login'>
           <RoleAuthentication allowedRoles={['teacher']} children={<><AdminHeader /><CreateExam /></>}/></RequireAuth>} />
+        <Route path="Adminstrator/User" element={<RequireAuth fallbackPath='/login'><RoleAuthentication allowedRoles={['admin']} children={<><AdminHeader /><AdminUser/></>} /></RequireAuth>} />
+        <Route path="Adminstrator/courseManagment" element={<RequireAuth fallbackPath='/login'><RoleAuthentication allowedRoles={['admin']} children={<><AdminHeader /><AdminCourseManagment/></>} /></RequireAuth>} />
+        <Route path='Adminstrator/PaymentManagment' element={<RequireAuth fallbackPath='/login'><RoleAuthentication allowedRoles={['admin']} children={<><AdminHeader /><PaymentManagment/> </>} /></RequireAuth>} />
+        <Route path='Adminstrator/User/:id' element={<RequireAuth fallbackPath='/login'><RoleAuthentication allowedRoles={['admin']} children={<><AdminHeader /><AdminUserDetail/></>} /></RequireAuth>} />
         <Route path='*' element={<ErrorPage error="Page Not Found" symbol={notFound}/>} />
-         
+        
       </Routes>
     </div>
   );

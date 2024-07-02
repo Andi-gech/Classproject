@@ -7,6 +7,7 @@ import SucessPopup from '../Components/SucessPopup';
 import ErrorPopup from '../Components/ErrorPopup';
 import { useParams } from 'react-router-dom';
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader';
+import ProgressBar from '../Components/ProgressBar';
 
 export default function CreateModule() {
   const [courseName, setCourseName] = useState('');
@@ -14,6 +15,9 @@ export default function CreateModule() {
   const [order, setOrder] = useState(1);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(null);
+
+  const [Video,setVideo]=useState(null);
 
   const formats = [
     'header', 'bold', 'italic', 'underline', 'strike', 'blockquote',
@@ -38,34 +42,57 @@ export default function CreateModule() {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/admin/${courseid}/createModule`, {
-        name: courseName,
-        content: moduleContent,
-        order
-      }, {
-        headers: { '_auth': `${authHeader}` }
+      const formData = new FormData();
+      formData.append('name', courseName);
+      formData.append('content', moduleContent);
+      formData.append('order', order);
+      if (Video) {
+        formData.append('video', Video);
+      }
+  
+      const response = await axios.post(`http://localhost:8080/api/admin/${courseid}/createModule`, formData, {
+        headers: {
+          '_auth': `${authHeader}`,
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          setUploadProgress(percentCompleted);
+        }
       });
+  
       console.log('Module saved:', response.data);
       setSuccess(true);
+      setUploadProgress(null);
+
       setTimeout(() => {
         setSuccess(false);
       }, 3000);
       setCourseName('');
       setModuleContent('');
+      setVideo(null);
+      // Reset progress
     } catch (error) {
       setError(error);
+      setUploadProgress(null);
       setTimeout(() => {
         setError(null);
       }, 3000);
       console.error('Error saving module:', error);
     }
   };
+  
 
   return (
     <div className='sm:ml-[20%] flex flex-col items-center sm:w-[80%] w-full p-4 bg-gray-50'>
       <div className='w-[90%] h-[50px] mt-3'>
         <p className='text-2xl font-bold text-gray-800'>Create Module</p>
       </div>
+      {uploadProgress && (
+      <div className='w-[90%] mt-3'>
+        <ProgressBar percentage={uploadProgress}/>
+      </div>
+    )}
       
       {success && <div className='absolute top-[10px] right-[200px]'> <SucessPopup sucess={"Module created successfully"} />
       </div>}
@@ -95,6 +122,18 @@ export default function CreateModule() {
           placeholder='Enter module name'
           value={courseName}
           onChange={(e) => setCourseName(e.target.value)}
+          className='w-[300px] ml-4 h-[32px] border border-gray-300 rounded-md outline-none text-black bg-white p-2 shadow-sm'
+        />
+      </div>
+
+      <div className='w-[90%] mt-3 flex flex-row items-center'>
+        <p>Video</p>
+        <input
+          type="file"
+          placeholder='Enter module name'
+
+        
+          onChange={(e) => setVideo(e.target.files[0])}
           className='w-[300px] ml-4 h-[32px] border border-gray-300 rounded-md outline-none text-black bg-white p-2 shadow-sm'
         />
       </div>

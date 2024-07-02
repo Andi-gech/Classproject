@@ -47,6 +47,12 @@ const handleEnroll=async()=>{
       {data?.data?.modules?.map(module=><div key={module?._id} className='w-[300px] h-[60px] mt-2  items-center shadow-sm rounded-md shadow-zinc-200 bg-slate-100 bg-opacity-30  flex p-2'>
         <p>{module?.lesson?.name}</p>
       </div>)}
+      <div className='w-[300px] h-[60px] mt-2  items-center shadow-sm rounded-md shadow-zinc-200 bg-slate-100 bg-opacity-30  flex p-2'>
+        <p className=' font-bold text-[18px]'>By</p>
+        <img src={'https://cdn-icons-png.flaticon.com/512/149/149071.png'} className='w-[40px] h-[40px] rounded-full ml-2'/>
+
+        <p className='mx-2 font-bold text-gray-400'>{course?.data?.createdBy.fullName}</p>
+      </div>
       <div className=' mt-4'>
       { enroll?.data?.length===0 ?
       <div onClick={handleEnroll} className='w-[150px]  cursor-pointer ml-4 rounded-lg h-[50px] flex items-center justify-center bg-black'> 

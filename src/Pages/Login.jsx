@@ -44,7 +44,7 @@ export default function Login({props}) {
         navigate('/')
       }
       else{
-        navigate('/admin/users')
+        navigate('/Adminstrator/User')
       }
     },
     onError:(err)=>{

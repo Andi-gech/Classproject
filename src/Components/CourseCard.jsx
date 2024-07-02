@@ -5,42 +5,28 @@ import { Link } from 'react-router-dom'
 import UseFetchEachCourse from '../Hooks/UseFetchAllModules'
 import UseFetchAllModules from '../Hooks/UseFetchAllModules'
 import UseFetchSingleCourse from '../Hooks/UseFetchSingleCourse'
+import { AiFillTrophy } from 'react-icons/ai'
 
 export default function CourseCard({data}) {
 
-const {data:coursedata}=UseFetchSingleCourse(data.course)
-
-  
-
-// return (
-
-//   <Link to={`/learn/${coursedata?.data?._id}`} className='  w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col justify-center items-start shrink-0  mx-2 h-[200px]'>
-//     <div  className='absolute  top-0 w-full h-full  z-[500]   duratioan-75 hover:transform hover:bg-blue-800 flex items-center justify-center  cursor-pointer hover:bg-opacity-40'>
-// <BiPlay className='text-3xl text-white '/>
-//     </div>
-//     <div className='absolute bottom-0 bg-gradient-to-b   from-transparent via-transparent to-zinc-900 w-full h-full z-[200]'></div>
-//     <img src={`http://localhost:8080/images/${coursedata?.data?.image}`} className='w-full   mb-2 rounded-md h-full'/>
-//     <div className=' absolute  z-[300] mb-[10px]  bottom-0 w-full h-[60px] flex    flex-col'>
-//       <p className=' text-[18px] font-bold  text-white line-clamp-2 w-full '> {coursedata?.data?.name} </p>
-//       <p className=' text-gray-400 w-full'>{data?.completedModules?.length}  course Completed </p>
-
-//      
-//     </div>
-  
-
-//   </Link>
-  
-//   )
-// }
 return(
-  <Link to={`/learn/${coursedata?.data?._id}`} className='   w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[230px]'>
-    <img src={`http://localhost:8080/images/${coursedata?.data?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
-    <div className='text-black dark:text-white text-[16px] line-clamp-1  mx-1 font-semibold '>{coursedata?.data?.name}</div>
-    <p className=' text-gray-400 text-sm w-full mx-1'>{data?.completedModules?.length} module Completed from {coursedata?.data?.coursemodules?.length}  modules </p>
+  <Link to={`/learn/${data?.course?._id}`} className='   w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[230px]'>
+    <img src={`http://localhost:8080/images/${data?.course?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
+     {
+      data?.completedModules?.length===data?.course?.coursemodules?.length
+      && <div className='absolute flex-col  top-0 w-full h-[150px]  z-[500]   duratioan-75 hover:transform hover:bg-blue-800 flex items-center justify-center  cursor-pointer hover:bg-opacity-40'>
+      <AiFillTrophy className='  text-[150px] text-yellow-500  opacity-50'/>
+      <p className='text-3xl font-extrabold text-yellow-500 opacity-45 '>Completed</p>
+      </div>
+}
+    
+    
+    <div className='text-black dark:text-white text-[16px] line-clamp-1  mx-1 font-semibold '>{data?.course?.name}</div>
+    <p className=' text-gray-400 text-sm w-full mx-1'>{data?.completedModules?.length} module Completed from {data?.course?.coursemodules?.length}  modules </p>
 <div className='mt-[10px] mx-1 h-[40px] w-full '>
-<ProgressBar percentage={(data?.completedModules?.length/coursedata?.data?.coursemodules?.length)*100} />
+<ProgressBar percentage={(data?.completedModules?.length/data?.course?.coursemodules?.length)*100} />
 </div>
-  </Link>
+</Link>
 )
 
 }

@@ -7,15 +7,16 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import Switcher from '../Components/Switch';
 import image from '../assets/curvestyle.png'
+import UseTopratedUser from '../Hooks/UsetopRatedTeacher';
 export default function Header() {
     const signOut = useSignOut();
     const navigate = useNavigate();
-
+    const {data}=UseTopratedUser()
   
 
   return (
     
-    <div className='  w-[18%] sm:flex fixed hidden left-0  h-screen  rounded-r-md  bg-blue-900  text-white   flex-col items-center dark:shadow-gray-600 shadow-gray-300  shadow-md  z-10'>
+    <div className='  w-[18%] sm:flex fixed hidden left-0  z-40 h-screen  rounded-r-md  bg-blue-900  text-white   flex-col items-center dark:shadow-gray-600 shadow-gray-300  shadow-md  z-10'>
     <image className=' z-20 absolute bottom-0' src={image}/>
     <div className=' h-[90px] w-full px-2 flex flex-row items-center justify-between  '>
     <img src={logo} className='w-[50px]   h-[50px]'/>
@@ -49,37 +50,25 @@ export default function Header() {
       </div>
       <div className='mt-[15px]'>
     
-      
-      <div className='w-[80%]   px-2 h-[50px]  hover:text-blue-800  cursor-pointer text-center ml-[30px]  shadow-sm     font-light text-[15px]  flex-row flex items-center '>
+      {data?.data.map((item)=>{
+        return(  <div className='w-[80%]   px-2 h-[50px]  hover:text-blue-800  cursor-pointer text-center ml-[30px]  shadow-sm     font-light text-[15px]  flex-row flex items-center '>
         <img src='https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=2000' alt='user' className='h-[30px] w-[30px] rounded-full' /> 
         <div className='flex   w-[170px]  flex-col justify-center  pl-3 items-start'>
-          <p className='m-0 p-0 text-white  font-normal    text-sm  '>Mr. Abebe</p>
+          <p className='m-0 p-0 text-white  font-normal    text-sm  '>Mr. {item.fullName}</p>
           {/* <p className=' font-serif text-[12px]  text-gray-600'>Accountant</p> */}
           <div className='w-full flex flex-row text-sm items-center'>
-            <AiFillStar color='orange'/>
-            <AiFillStar color='orange'/>
-            <AiFillStar color='orange'/>
-            <AiFillStar/>
-            <AiFillStar/>
-            <p className='text-[10px] ml-2'>(5.0)</p>
+          <AiFillStar size={13} color={item.averageRating >= 1 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={item.averageRating >= 2 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={item.averageRating >= 3 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={item.averageRating >= 4 ? 'orange' : 'gray'}/>
+      <AiFillStar size={13} color={item.averageRating >= 5 ? 'orange' : 'gray'}/>
+            <p className='text-[10px] ml-2'>({item.averageRating.toFixed(2)})</p>
           </div>
           </div>  
-          </div>
-          <div className='w-[80%]  mt-3  px-2 h-[50px]  hover:text-blue-800  cursor-pointer text-center ml-[30px]  shadow-sm     font-light text-[15px]  flex-row flex items-center '>
-        <img src='https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?w=2000' alt='user' className='h-[30px] w-[30px] rounded-full' /> 
-        <div className='flex   w-[170px]  flex-col justify-center  pl-3 items-start'>
-          <p className='m-0 p-0 text-white text-black font-normal    text-sm  '>Mr. Abebe</p>
-          {/* <p className=' font-serif text-[12px]  text-gray-600'>Accountant</p> */}
-          <div className='w-full flex flex-row text-sm items-center'>
-            <AiFillStar color='orange'/>
-            <AiFillStar color='orange'/>
-            <AiFillStar color='orange'/>
-            <AiFillStar/>
-            <AiFillStar/>
-            <p className='text-[10px] ml-2'>(5.0)</p>
-          </div>
-          </div>  
-          </div>
+          </div>)
+      })}
+    
+         
       </div>
       </div>
   
