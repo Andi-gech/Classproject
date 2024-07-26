@@ -18,7 +18,7 @@ export default function Login({props}) {
   const auth = useAuthUser()
   const post=async()=>{
 
-    return await axios.post('http://localhost:8080/api/user/Auth', { email:Email, password });
+    return await axios.post('http://192.168.1.15:8080/api/user/Auth', { email:Email, password });
   }
 
   const mutation=useMutation({
@@ -34,7 +34,8 @@ export default function Login({props}) {
         userState: {
           email:Email,
           name: data.data.name,
-          role:data.data.role
+          role:data.data.role,
+          _id:data.data.id
         }
       });
       if(data.data.role==='teacher'){
@@ -82,18 +83,18 @@ export default function Login({props}) {
 
 <div className='w-[90%] relative h-[70px] mt-[50px] '>
   
-          <p className='  text-sm z-10 bg-white  dark:bg-zinc-900 px-2 py-2 dark:text-white'>Email</p>
+          <p className='  text-sm z-10 bg-white   px-2 py-2 dark:text-white'>Email</p>
           <input onChange={(e) => setEmail(e.target.value)} type="email" className='w-full  bg-white dark:bg-zinc-800 outline-purple-500 -z-10 h-[45px] border-gray-400 rounded-md border-none shadow-sm shadow-gray-400'/>
         </div> 
         <div className='w-[90%] relative h-[70px] mt-4 '>
-          <p className='  text-sm z-10 bg-white  dark:bg-zinc-900 px-2 py-2 dark:text-white'>Password</p>
+          <p className='  text-sm z-10 bg-white   px-2 py-2 dark:text-white'>Password</p>
           <input onChange={(e) => setPassword(e.target.value)} type='password' className='w-full  bg-white dark:bg-zinc-800 outline-purple-500 -z-10 h-[45px] border-gray-400 rounded-md border-none shadow-sm shadow-gray-400'/>
         </div> 
         <div onClick={()=>mutation.mutate({ email:Email, password })} className='w-[80%] mt-[50px] cursor-pointer shadow-sm  shadow-zinc-900 hover:bg-zinc-900 rounded-md h-[50px] flex items-center justify-center bg-black'>
           <p className='text-white font-bold'>Login</p>
         </div>
         <div className='w-full  px-3 h-[50px] justify-center mt-7 flex flex-col  '>
-        <p className='mt-[5px]  text-[14px] font-medium'>Don't have an account? <Link  to={'/signup'} className=' text-blue-600 underline  cursor-pointer'>Sign in</Link ></p>
+        <p className='mt-[5px]  text-[14px] font-medium'>Don't have an account? <Link  to={'/signup'} className=' text-blue-600 underline  cursor-pointer'>Sign up</Link ></p>
      <p className=' text-blue-600  text-[14px]  cursor-pointer'> Forget Your Password</p>
         </div>
         

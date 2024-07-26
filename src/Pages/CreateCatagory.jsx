@@ -17,7 +17,7 @@ export default function CreateCategory() {
 
         try {
             const response = await axios.post(
-                'http://localhost:8080/api/admin/createCatagory',
+                'http://192.168.1.15:8080/api/admin/createCatagory',
                 formData,
                 { headers: { '_auth': `${authHeader}`, 'Content-Type': 'multipart/form-data' } }
             );

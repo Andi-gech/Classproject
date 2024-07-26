@@ -11,7 +11,7 @@ export default function CourseCard({data}) {
 
 return(
   <Link to={`/learn/${data?.course?._id}`} className='   w-[300px] relative  rounded-md overflow-hidden hover:scale-[1.01]  duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[230px]'>
-    <img src={`http://localhost:8080/images/${data?.course?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
+    <img src={`http://192.168.1.15:8080/images/${data?.course?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
      {
       data?.completedModules?.length===data?.course?.coursemodules?.length
       && <div className='absolute flex-col  top-0 w-full h-[150px]  z-[500]   duratioan-75 hover:transform hover:bg-blue-800 flex items-center justify-center  cursor-pointer hover:bg-opacity-40'>

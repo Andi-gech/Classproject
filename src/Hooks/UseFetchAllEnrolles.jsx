@@ -8,7 +8,7 @@ export default function UseFetchAllEnrolles() {
 
     const Fetchcourse=()=>{
 
-        return axios.get('http://localhost:8080/api/enroll',{headers:{'_auth':`${authHeader}`}})
+        return axios.get('http://192.168.1.15:8080/api/enroll',{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['fetchAllEnrolles'], queryFn: Fetchcourse })

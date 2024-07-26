@@ -15,6 +15,7 @@ export default function Admin() {
   const [error, setError] = useState(false);
   const [courseDescription, setCourseDescription] = useState('');
   const [courseCategory, setCourseCategory] = useState('');
+  const [price,setprice]=useState(0)
   const [imageFile, setImageFile] = useState(null);
 
   const authHeader = useAuthHeader();
@@ -27,10 +28,11 @@ export default function Admin() {
     formData.append('description', courseDescription);
     formData.append('catagory', courseCategory);
     formData.append('image', imageFile);
+    formData.append('price',price)
     console.log(courseCategory, 'courseCategory')
 
     try {
-      const response = await axios.post('http://localhost:8080/api/admin/createCourse', formData, {
+      const response = await axios.post('http://192.168.1.15:8080/api/admin/createCourse', formData, {
         headers: {
           '_auth': authHeader,
           'Content-Type': 'multipart/form-data'
@@ -109,6 +111,17 @@ export default function Admin() {
               <option value={category._id} key={category._id}>{category.name}</option>
             ))}
           </select>
+        </div>
+        <div className='w-full flex flex-row items-center justify-start h-[100px] mt-4 '>
+        <label className='text-lg font-semibold mx-4'>Price</label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setprice(e.target.value)}
+            placeholder='Price'
+            className='w-[200px] mt-2 h-[50px] border border-gray-300 rounded-md outline-none text-black bg-white p-2 shadow-sm'
+          />
+          <p className='mx-4'>Birr</p>
         </div>
         <div 
           onClick={handleSave} 

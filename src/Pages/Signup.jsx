@@ -14,7 +14,7 @@ export default function Signup() {
   const [isTeacher,setisTeacher]=React.useState(false)
 const navigate = useNavigate()
 const post=async()=>{
-  return await axios.post('http://localhost:8080/api/user/create', { fullName:Fullname, email:Email, password ,role:isTeacher ? 'teacher':'student',confirmpassword })
+  return await axios.post('http://192.168.1.15:8080/api/user/create', { fullName:Fullname, email:Email, password ,role:isTeacher ? 'teacher':'student',confirmpassword })
   
 }
 const mutation=useMutation({

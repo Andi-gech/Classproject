@@ -93,8 +93,8 @@ export default function AdminHeader() {
        
         
        
-      <div className='w-full  mt-2  hover:text-blue-800  cursor-pointer text-center ml-[40px] h-[30px]    font-light text-[15px]  flex-row flex items-center '>
-  <IoMdSettings size={20} className=' text-white text-black '    /> <p className='ml-2  text-white font-normal text-black   '>Settings</p>   </div>
+      <div onClick={()=>navigate('/settings')} className='w-full  mt-2  hover:text-blue-800  cursor-pointer text-center ml-[40px] h-[30px]    font-light text-[15px]  flex-row flex items-center '>
+      <IoMdSettings size={20} className=' text-white text-black '    /> <p className='ml-2  text-white font-normal text-black   '>Settings</p>   </div>
   <div onClick={()=>{signOut()
   navigate('/login')
 }} className='w-full  mt-2  hover:text-blue-800  cursor-pointer text-center ml-[40px] h-[30px]    font-light text-[15px]  flex-row flex items-center '>

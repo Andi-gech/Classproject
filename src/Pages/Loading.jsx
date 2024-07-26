@@ -3,7 +3,7 @@ import {ColorRing } from 'react-loader-spinner'
 
 export default function Loading() {
   return (
-    <div className=' ml-[20%]  flex-col w-[80%] flex items-center justify-center'>
+    <div className=' ml-[20%]   flex-col w-[80%] flex items-center justify-center'>
 
 <ColorRing
   visible={true}

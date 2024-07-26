@@ -8,7 +8,7 @@ export default function UseFetchAllModules(courseid) {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://localhost:8080/api/coursemodule/course/${courseid}`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://192.168.1.15:8080/api/coursemodule/course/${courseid}`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['FetchAllModules',courseid], queryFn: Fetchcourse , enabled: !!courseid,})

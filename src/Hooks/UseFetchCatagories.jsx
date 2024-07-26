@@ -7,7 +7,7 @@ export default function UseFetchCatagories() {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://localhost:8080/api/coursecatagory`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://192.168.1.15:8080/api/coursecatagory`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['fechCatagories'],  queryFn: Fetchcourse })

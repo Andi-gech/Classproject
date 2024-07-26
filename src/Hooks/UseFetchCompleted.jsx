@@ -2,15 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import useAuthHeader from 'react-auth-kit/hooks/useAuthHeader'
-
-export default function UseFetchAllUser() {
+export default function UseFetchCompleted() {
     const authHeader = useAuthHeader()
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/user/all`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://192.168.1.15:8080/api/enroll/completed/course`,{headers:{'_auth':`${authHeader}`}})
     }
   
-    return useQuery({ queryKey: ['FetchAlluser'], queryFn: Fetchcourse ,})
+    return useQuery({ queryKey: ['fechcompleted'],  queryFn: Fetchcourse })
  
 }
