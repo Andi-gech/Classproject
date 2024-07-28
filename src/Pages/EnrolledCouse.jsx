@@ -40,7 +40,7 @@ export default function EnrolledCouse() {
       <div className='w-[90%] px-[10px] mt-5  flex  flex-row flex-wrap'>
    {data?.data?.map(course=>
    <>
-    <Link to={`/enroll/${course?._id}`} className='w-[300px] shadow-md rounded-md m-2 shadow-gray-200 dark:shadow-gray-800 cursor-pointer hover:scale-[1.05]  transform transition-transform  duration-1000 hover:opacity-90  mx-2  h-[300px]'> <img src={`http://192.168.1.15:8080/images/${course?.image}`} className='w-full h-[50%] rounded-md'/>
+    <Link to={`/enroll/${course?._id}`} className='w-[300px] shadow-md rounded-md m-2 shadow-gray-200 dark:shadow-gray-800 cursor-pointer hover:scale-[1.05]  transform transition-transform  duration-1000 hover:opacity-90  mx-2  h-[300px]'> <img src={`http://localhost:8080/images/${course?.image}`} className='w-full h-[50%] rounded-md'/>
    <div className='w-full  p-2  flex  flex-col'><p className='font-bold dark:text-white text-black'> {course.name}</p>
    <p className='text-sm text-gray-400   line-clamp-2 w-full'>{course.description} </p>
    <div className='w-[80%] h-[40px] flex items-center justify-center  mt-4 rounded-md bg-blue-700'>

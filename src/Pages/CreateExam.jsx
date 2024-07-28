@@ -53,7 +53,7 @@ const CreateExam = () => {
     });
 
     try {
-      const response = await axios.post('http://192.168.1.15:8080/api/admin/', {
+      const response = await axios.post('http://localhost:8080/api/admin/', {
         title: title,
         passingMarks: passingMarks,
         duration: duration,

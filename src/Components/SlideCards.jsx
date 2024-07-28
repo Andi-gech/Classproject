@@ -7,17 +7,20 @@ import CourseCard from './CourseCard';
 export default function SlideCards({ data,isLoading}) {
   const [translate, setTranslate] = useState(0);
 
-  const maxTranslate = (data?.data?.length - 2) * 90; // Calculate the maximum translation
-
+  const maxTranslate = (data?.data?.length /1.6) * 20; // Calculate the maximum translation
+console.log(maxTranslate,"max")
+console.log(data?.data.length)
   const handleNext = () => {
+    console.log(translate,"tran")
     if (translate < maxTranslate) {
-      setTranslate(translate + 90);
+      
+      setTranslate(translate + 50);
     }
   };
 
   const handlePrev = () => {
     if (translate > 0) {
-      setTranslate(translate - 90);
+      setTranslate(translate - 50);
     }
   };
 
@@ -57,13 +60,16 @@ export default function SlideCards({ data,isLoading}) {
       </div>
 
       <div
-        style={{ transform: `translateX(-${translate}%)`,
-        transition: 'transform 0.6s ease-in-out' }}
-        className='w-full flex  flex-row  overflow-x-scroll sm:overflow-x-hidden   duration-300'
+     
+        className='w-full flex   flex-row  overflow-x-scroll sm:overflow-x-hidden   duration-300'
       >
+        <div className='flex flex-row'    style={{ transform: `translateX(-${translate}%)`,
+        transition: 'transform 0.6s ease-in-out' }}>
         {data?.data?.map((data) => (
           <CourseCard key={data?._id} data={data} id={data?._id} />
         ))}
+        </div>
+      
       </div>
 
       {data?.data?.length === 0 && (

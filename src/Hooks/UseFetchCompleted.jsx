@@ -7,7 +7,7 @@ export default function UseFetchCompleted() {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/enroll/completed/course`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/enroll/completed/course`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['fechcompleted'],  queryFn: Fetchcourse })

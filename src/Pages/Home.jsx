@@ -75,7 +75,7 @@ export default function Home() {
   
   return (
  
- <div className='sm:ml-[18%] py-[60px] sm:py-[5px] flex relative bg-slate-100 dark:bg-slate-950 sm:w-[82%] w-full'>
+ <div className='sm:ml-[18%] py-[60px] sm:py-[5px] flex relative bg-white dark:bg-slate-950 sm:w-[82%] w-full'>
  <div className="sm:w-[70%] w-full     mb-5   pt-4 justify-center items-center  flex-nowrap  flex flex-col    ">
   
   <div className='w-[90%] h-[50px] flex-none  relative'>
@@ -91,7 +91,7 @@ export default function Home() {
    
      {searchdata?.data?.map((item)=>{
       return <div className='w-full  h-[65px] mt-2 shadow-sm flex flex-row'>
-        <img src={`http://192.168.1.15:8080/images/${item?.image}`} className='w-[65px] h-[65px] object-cover rounded-md'/>
+        <img src={`http://localhost:8080/images/${item?.image}`} className='w-[65px] h-[65px] object-cover rounded-md'/>
         
         <div className='w-full ml-4   h-full flex flex-col'>
         <p className='  text-[18px] dark:text-white text-black font-bold'>{item?.name}</p>
@@ -171,7 +171,7 @@ export default function Home() {
   {catagory?.data?.map((item)=>{
   return  <div onClick={()=>setSelecetedCatagory(item?._id)} className='w-[250px] mx-[10px] rounded-lg shadow-md h-full bg-white dark:bg-slate-900 flex  items-center  justify-between px-3 flex-row'>
       <div className='w-[50px] h-[50px] rounded-full flex items-center justify-center bg-gray-200'>
-        <img src={ item?.image?`http://192.168.1.15:8080/images/${item?.image}`:'https://cdn-icons-png.flaticon.com/512/149/149071.png'} className='w-[50px] h-[50px] object-cover rounded-[10px]'/>
+        <img src={ item?.image?`http://localhost:8080/images/${item?.image}`:'https://cdn-icons-png.flaticon.com/512/149/149071.png'} className='w-[50px] h-[50px] object-cover rounded-[10px]'/>
       </div>
 
       <div className='ml-2'>
@@ -231,7 +231,7 @@ export default function Home() {
   return(
     <div className='w-full my-2 h-[60px] px-2 flex dark:border-gray-900 py-2   border-b-2 dark:text-white  flex-row  items-center justify-between'>
       <div className='flex flex-row items-center'>
-      <img src={item?.course?.createdBy?.profilepic?`http://192.168.1.15:8080/images/${item?.course?.createdBy?.profilepic}`:'https://cdn-icons-png.flaticon.com/512/149/149071.png'} className='w-[50px] h-[50px] rounded-full object-cover'/>
+      <img src={item?.course?.createdBy?.profilepic?`http://localhost:8080/images/${item?.course?.createdBy?.profilepic}`:'https://cdn-icons-png.flaticon.com/512/149/149071.png'} className='w-[50px] h-[50px] rounded-full object-cover'/>
     
      
     <p className='text-[14px] mx-2 font-bold'>{item?.course.createdBy.fullName}</p>
@@ -272,7 +272,7 @@ export default function Home() {
         </svg>:<div className='w-[70px] h-[70px]'>
    
 
-   <img src={userdata?.data?.profilepic?`http://192.168.1.15:8080/${userdata?.data?.profilepic}`:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} className='w-[70px] border-[2px]  border-blue-500  h-[70px] rounded-full' alt='Profile' />
+   <img src={userdata?.data?.profilepic?`http://localhost:8080/${userdata?.data?.profilepic}`:'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} className='w-[70px] border-[2px]  border-blue-500  h-[70px] rounded-full' alt='Profile' />
    </div>}
 
  <div className='  w-[80%]'>

@@ -11,7 +11,7 @@ export default function AdminCourseManagment() {
   const queryClient=useQueryClient()
   const authHeader=useAuthHeader()
   const mutation=useMutation({
-    mutationFn:(data)=>axios.put(`http://192.168.1.15:8080/api/admin/courses/approve/${data}`,{},{headers:{'_auth':`${authHeader}`}}),
+    mutationFn:(data)=>axios.put(`http://localhost:8080/api/admin/courses/approve/${data}`,{},{headers:{'_auth':`${authHeader}`}}),
     onSuccess:()=>{
       queryClient.invalidateQueries(['fechNotApprovedCourses'])
     },
@@ -51,7 +51,7 @@ export default function AdminCourseManagment() {
           return (
             
   <div className='  mt-3  w-[300px]   shadow-md bg-white shadow-gray-300 relative  rounded-md overflow-hidden   duration-300  transition-transform  my-[1px]    flex  flex-col  items-start shrink-0  mx-2  h-[270px]'>
-  <img src={`http://192.168.1.15:8080/images/${data?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
+  <img src={`http://localhost:8080/images/${data?.image}`} className='w-full  object-cover  mb-[2px] rounded-md h-[150px]'/>
   <div className='text-black dark:text-white text-[16px] line-clamp-1  mx-1 font-semibold '>{data?.name}</div>
   <p className=' text-gray-400 text-sm w-full mx-1 line-clamp-1'>{data?.description} </p>
 

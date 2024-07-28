@@ -9,7 +9,7 @@ export default function ExamResult({mark,isPassed,onretake,link}) {
 
 
 
-if(!isPassed)
+if(isPassed)
 {
   return (
     <div className='fixed top-0 bg-white dark:bg-slate-950 w-full h-full flex  items-center justify-center '>

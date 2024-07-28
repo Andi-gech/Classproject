@@ -38,7 +38,7 @@ export default function Settings() {
       }
 
       // Send PUT request with form data
-      await axios.put(`http://192.168.1.15:8080/api/user/update/me`, formData, {
+      await axios.put(`http://localhost:8080/api/user/update/me`, formData, {
         headers: {
           '_auth': authHeader, // Include auth headers if needed
           'Content-Type': 'multipart/form-data', // Specify content type for file upload
@@ -98,7 +98,7 @@ export default function Settings() {
           </div>
           <div className='w-[50%] flex-1 flex-col flex items-center justify-center'>
             <img
-              src={image ? URL.createObjectURL(image) : (data?.data?.profilepic ? `http://192.168.1.15:8080/${data?.data?.profilepic}` : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")}
+              src={image ? URL.createObjectURL(image) : (data?.data?.profilepic ? `http://localhost:8080/${data?.data?.profilepic}` : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")}
               className='w-[250px] shadow-md shadow-gray-400 h-[250px] object-cover'
               alt='Profile'
               onError={(e) => { console.log('Error loading image:', e.target.src); e.target.src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"; }}

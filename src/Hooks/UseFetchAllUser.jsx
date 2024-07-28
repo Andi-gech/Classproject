@@ -8,7 +8,7 @@ export default function UseFetchAllUser() {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/user/all`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/user/all`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['FetchAlluser'], queryFn: Fetchcourse ,})

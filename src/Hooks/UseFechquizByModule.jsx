@@ -8,7 +8,7 @@ export default function UseFetchQuizByModule(id) {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/exams/module/${id}`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/exams/module/${id}`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['fechedquizbymodule',id],  queryFn: Fetchcourse , enabled: !!id, refetchOnWindowFocus: false})

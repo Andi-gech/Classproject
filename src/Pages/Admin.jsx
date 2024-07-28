@@ -30,9 +30,10 @@ export default function Admin() {
     formData.append('image', imageFile);
     formData.append('price',price)
     console.log(courseCategory, 'courseCategory')
+    
 
     try {
-      const response = await axios.post('http://192.168.1.15:8080/api/admin/createCourse', formData, {
+      const response = await axios.post('http://localhost:8080/api/admin/createCourse', formData, {
         headers: {
           '_auth': authHeader,
           'Content-Type': 'multipart/form-data'

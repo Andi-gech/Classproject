@@ -50,7 +50,7 @@ export default function CreateModule() {
         formData.append('video', Video);
       }
   
-      const response = await axios.post(`http://192.168.1.15:8080/api/admin/${courseid}/createModule`, formData, {
+      const response = await axios.post(`http://localhost:8080/api/admin/${courseid}/createModule`, formData, {
         headers: {
           '_auth': `${authHeader}`,
           'Content-Type': 'multipart/form-data'

@@ -8,7 +8,7 @@ export default function UseFetchCourseByCatagory(catagoryid) {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/courses/catagory/${catagoryid}`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/courses/catagory/${catagoryid}`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['FetchByCatagory',catagoryid],  queryFn: Fetchcourse , enabled: !!catagoryid,})

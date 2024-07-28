@@ -31,7 +31,7 @@ export default function Exam() {
  const authHeader = useAuthHeader()
     const Result =async () =>{
       console.log(examAnswers,'answers')
-      const res=await axios.post(`http://192.168.1.15:8080/api/enroll/exam/${examid}/evaluate`,{answers:examAnswers},{headers:{'_auth':`${authHeader}`}})
+      const res=await axios.post(`http://localhost:8080/api/enroll/exam/${examid}/evaluate`,{answers:examAnswers},{headers:{'_auth':`${authHeader}`}})
    if(res.status==200){
     console.log(res)
     console.log(res,"res")

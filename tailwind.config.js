@@ -9,6 +9,7 @@ export default {
     extend: {
       fontFamily:{
         "j": "Roboto, sans-serif"
+     
       },
       backgroundImage: {
         "custom-gradient":

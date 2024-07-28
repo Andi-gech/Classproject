@@ -11,7 +11,7 @@ export default function UseFetchAllCourses(searchparams, selectedCategory) {
     };
 
     const Fetchcourse =async () => {
-        return await axios.get('http://192.168.1.15:8080/api/courses', {
+        return await axios.get('http://localhost:8080/api/courses', {
             headers: { '_auth': authHeader },
             params: params, // Pass the params object here
         });

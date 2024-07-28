@@ -8,7 +8,7 @@ export default function UseTopratedUser()  {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/user/teacher`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/user/teacher`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['TopRated'],  queryFn: Fetchcourse })

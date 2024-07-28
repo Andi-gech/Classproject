@@ -25,7 +25,7 @@ export default function AdminCourse() {
                 className='w-[300px] h-[200px] mt-[20px] mx-[10px] bg-white shadow-md rounded-md hover:shadow-lg transition duration-200'
               >
                 <img 
-                  src={'http://192.168.1.15:8080/' + item.image} 
+                  src={'http://localhost:8080/' + item.image} 
                   className='w-full h-[60%] object-cover rounded-t-md' 
                   alt={item.name} 
                 />

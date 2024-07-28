@@ -8,7 +8,7 @@ export default function UseFetchSingleCourse(id) {
     
     const Fetchcourse=()=>{
 
-        return axios.get(`http://192.168.1.15:8080/api/courses/${id}`,{headers:{'_auth':`${authHeader}`}})
+        return axios.get(`http://localhost:8080/api/courses/${id}`,{headers:{'_auth':`${authHeader}`}})
     }
   
     return useQuery({ queryKey: ['Course',id], queryFn: Fetchcourse,enabled: !!id  })

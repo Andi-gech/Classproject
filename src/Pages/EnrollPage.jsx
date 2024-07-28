@@ -22,7 +22,7 @@ export default function EnrollPage() {
   const authHeader = useAuthHeader()
   const navigate = useNavigate()
   const mutation=useMutation({
-    mutationFn:()=>axios.post(`http://192.168.1.15:8080/api/enroll/pay/${courseid}`,{},{
+    mutationFn:()=>axios.post(`http://localhost:8080/api/enroll/pay/${courseid}`,{},{
       headers: {
         '_auth': authHeader
       },
@@ -51,7 +51,7 @@ export default function EnrollPage() {
         </div>
         </div>}
         {error && <div className='absolute z-[100] top-[80px] right-[100px]'><ErrorPopup error={error}/></div>}
-      <img src={`http://192.168.1.15:8080/images/${course?.data?.image}`} className='w-[450px] h-[350px]  rounded-md'/>
+      <img src={`http://localhost:8080/images/${course?.data?.image}`} className='w-[450px] h-[350px]  rounded-md'/>
       {/* <div  className=' h-[200px] ml-5'>
         
       

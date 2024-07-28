@@ -18,7 +18,7 @@ export default function Login({props}) {
   const auth = useAuthUser()
   const post=async()=>{
 
-    return await axios.post('http://192.168.1.15:8080/api/user/Auth', { email:Email, password });
+    return await axios.post('http://localhost:8080/api/user/Auth', { email:Email, password });
   }
 
   const mutation=useMutation({
